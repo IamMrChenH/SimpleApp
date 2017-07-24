@@ -1,10 +1,22 @@
 package com.example.chenhao.simpleapp.app;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.chenhao.simpleapp.base.UserInfoBean;
+import com.example.chenhao.simpleapp.http.WthrcdnData;
 import com.example.chenhao.simpleapp.user.bean.UserBean;
 import com.example.chenhao.simpleapp.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.Random;
 
@@ -39,7 +51,7 @@ public class BaseData {
 
 
     public static void startData(final Activity context) {
-
+        getWthrcdnData(context);
 
         new Thread() {
             @Override
@@ -116,5 +128,44 @@ public class BaseData {
         }.start();
 
     }
+
+    public static void getWthrcdnData(Context context) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, "http://wthrcdn.etouch.cn/weather_mini?city=%E7%A6%8F%E5%B7%9E",
+                new JSONObject(), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Log.e("233", "onResponse: " + jsonObject.toString());
+                String temp = jsonObject.toString();
+                try {
+                    JSONObject object = new JSONObject(temp);
+                    object = new JSONObject(object.getString("data"));
+                    JSONArray forecast = object.getJSONArray("forecast");
+                    JSONObject jsonObject1 = forecast.getJSONObject(0);
+                    WthrcdnData.fengli = jsonObject1.getString("fengli");
+                    WthrcdnData.fengxiang = jsonObject1.getString("fengxiang");
+                    WthrcdnData.type = jsonObject1.getString("type");
+                    WthrcdnData.wendu = object.getString("wendu");
+                    WthrcdnData.ganmao = object.getString("ganmao");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
+        requestQueue.add(request);
+    }
+
+// forecast
+//                    "{\"date\":\"24日星期一\",\"high\":\"高温 38℃\",\"fengli\":\"4-5级\",\"low\":\"低温 27℃\",\"fengxiang\":\"南风\",\"type\":\"多云\"}"+
+//                            ",\"ganmao\":\"各项气象条件适宜，发生感冒机率较低。但请避免长期处于空调房间中，以防感冒。\",\"wendu\":\"32\"},\"status\":1000,\"desc\":\"OK\"}";
 
 }

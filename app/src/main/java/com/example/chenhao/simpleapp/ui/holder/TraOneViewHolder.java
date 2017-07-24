@@ -41,6 +41,8 @@ public class TraOneViewHolder extends BaseViewHolder {
         topText2.setText(data.topText2);
         belowText1.setText(data.belowText);
         belowText2.setText(data.belowText2);
+
+
     }
 
 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.BaseFragment;
 import com.example.chenhao.simpleapp.bean.TrafficItem;
+import com.example.chenhao.simpleapp.http.WthrcdnData;
 import com.example.chenhao.simpleapp.ui.activity.PermissionActivity;
 import com.example.chenhao.simpleapp.ui.activity.RedLedManageActivity;
 import com.example.chenhao.simpleapp.ui.activity.StreetLedActivity;
@@ -64,9 +65,9 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
 
         mItems = new ArrayList<>();
         mItems.add(new TrafficItem(0, R.mipmap.ic_launcher_round, R.drawable.ic_item_back1,
-                "阴转多云", "微风"));
+                WthrcdnData.type, WthrcdnData.fengxiang + ":" + WthrcdnData.fengli));
         mItems.add(new TrafficItem(0, R.mipmap.ic_launcher_round, R.drawable.ic_item_back2,
-                "33℃", "不适宜出门"));
+                WthrcdnData.wendu + "℃", WthrcdnData.ganmao));
 
 //        交通环境  实时环境  路灯控制  红绿灯管理
 
@@ -216,6 +217,11 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
     @Override
     public void run() {
         try {
+            mItems.set(0, new TrafficItem(0, R.mipmap.ic_launcher_round, R.drawable.ic_item_back1,
+                    WthrcdnData.type, WthrcdnData.fengxiang + ":" + WthrcdnData.fengli));
+            mItems.set(1, new TrafficItem(0, R.mipmap.ic_launcher_round, R.drawable.ic_item_back2,
+                    WthrcdnData.wendu+ "℃", WthrcdnData.ganmao));
+            mTrafficHomeAdapter.notifyDataSetChanged();
             mViewPagerCurrentPosition = mViewPagerCurrentPosition + 1;
             if (mViewPagerCurrentPosition >= 3)
                 mViewPagerCurrentPosition = 0;
