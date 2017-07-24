@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_envir"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="实时环境" />
+        <item
+            android:id="@+id/nav_led"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="路灯控制" />
+        <item
+            android:id="@+id/nav_permission"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="权限管理" />
+        <item
+            android:id="@+id/nav_traffic_envir"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="交通环境" />
+        <item
+            android:id="@+id/nav_red_led"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="红绿灯管理" />
+        <item
+            android:id="@+id/nav_yuzhi_settings"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="阈值设置" />
+    </group>
+
+    <item android:title="其他">
+        <menu>
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_menu_send"
+                android:title="退出" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="other_names">
+        <item>路灯控制</item>
+        <item>红绿灯管理</item>
+    </array>
+
+</resources>

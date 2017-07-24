@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_user_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="主界面" />
+        <item
+            android:id="@+id/nav_user_info"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="我的资料" />
+        <item
+            android:id="@+id/nav_user_car"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="我的小车" />
+        <item
+            android:id="@+id/nav_chuxing"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="我的出行" />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="充值" />
+    </group>
+
+    <item android:title="其他">
+        <menu>
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_menu_send"
+                android:title="退出" />
+        </menu>
+    </item>
+
+</menu>

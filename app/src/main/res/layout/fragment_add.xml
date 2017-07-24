@@ -1,0 +1,125 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".user.ui.fragment.AddFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="充值ID号："
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+            <EditText
+                android:id="@+id/item_edit1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="请输入充值ID号"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+        </LinearLayout>
+
+
+        <com.example.chenhao.simpleapp.user.width.MyGridView
+            android:id="@+id/mGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:padding="20dp"
+            android:verticalSpacing="10dp"></com.example.chenhao.simpleapp.user.width.MyGridView>
+
+        <LinearLayout
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="自定义金额："
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+            <EditText
+                android:id="@+id/item_edit2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="请输入充值金额"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="历史记录"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textSize="15sp" />
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:text="确定"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            android:textColor="#FFF" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
