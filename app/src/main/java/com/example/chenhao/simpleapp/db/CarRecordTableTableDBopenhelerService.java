@@ -86,6 +86,24 @@ public class CarRecordTableTableDBopenhelerService {
         return cars;
     }
 
+    public List<CarRecord> findCarRecord(int id) {
+        List<CarRecord> cars = new ArrayList<>();
+        SQLiteDatabase db = mHeler.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from car_record where carId=?",
+                new String[]{String.valueOf(id)});
+        while (cursor.moveToNext()) {
+            CarRecord car = getCursorContent(cursor);
+            if (car != null) {
+                cars.add(car);
+                Log.e("db", car.toString());
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return cars;
+    }
+
     //OK
     public CarRecord getCursorContent(Cursor cursor) {
         int id = -1;

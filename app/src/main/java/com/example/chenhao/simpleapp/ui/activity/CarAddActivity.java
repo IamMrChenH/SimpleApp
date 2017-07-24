@@ -1,6 +1,7 @@
 package com.example.chenhao.simpleapp.ui.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,13 +52,15 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                startActivity(new Intent(CarAddActivity.this, CarRecordActivity.class)
+                        .putExtra("key", allCar.get(i).getId()));
             }
         });
     }
 
     public void updateData() {
         allCar = instance.findAllCar();
+        instanceRecord = CarRecordTableTableDBopenhelerService.getInstance(this);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -65,7 +68,7 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
     protected void onStart() {
         super.onStart();
         try {
-            mBaseHandler.postDelayed(this, 1000);
+//            mBaseHandler.postDelayed(this, 1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,7 +98,6 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
                         Utils.showToast("充值成功");
                         updateData();
                         dialog.dismiss();
-                        instanceRecord.findAllCar();
 
                     }
 
