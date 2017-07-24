@@ -26,10 +26,19 @@
             android:id="@+id/nav_yuzhi_settings"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="阈值设置" />
+        <item
+            android:id="@+id/nav_car_add"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="小车充值" />
     </group>
 
     <item android:title="其他">
         <menu>
+            <item
+                android:id="@+id/nav_version"
+                android:icon="@drawable/ic_menu_send"
+                android:title="版本号V1.0  \nMr.Chen \n福建船政交通职业学院" />
+
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_menu_send"

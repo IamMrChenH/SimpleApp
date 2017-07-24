@@ -20,11 +20,9 @@ import java.util.List;
  * Created by chenhao on 17-3-20.
  */
 
-public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
-{
+public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    public interface OnItemClickListener
-    {
+    public interface OnItemClickListener {
 
         public void onItemClick(View view, int position);
     }
@@ -33,8 +31,7 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
     public OnItemClickListener mItemClickListener;
 
 
-    public void setOnItemClickListener(OnItemClickListener mItemClickListener)
-    {
+    public void setOnItemClickListener(OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 
@@ -42,8 +39,7 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
     private List<TrafficItem> mTrafficItems;
 
 
-    public TrafficHomeAdapter(Context context, List<TrafficItem> TrafficItems)
-    {
+    public TrafficHomeAdapter(Context context, List<TrafficItem> TrafficItems) {
         mInflater = LayoutInflater.from(context);
         mTrafficItems = TrafficItems;
     }
@@ -57,16 +53,16 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
      * @return
      */
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        TrafficItem tempItem = mTrafficItems.get(0);
-        switch (viewType)
-        {
+        switch (viewType) {
             case 0:
                 return new TraOneViewHolder(mInflater.inflate(R.layout.item_line_6, parent, false));
             case 1:
                 return new TraTwoViewHolder(mInflater.inflate(R.layout.item_line_7, parent, false));
             case 2:
+                return new TraTwoViewHolder(mInflater.inflate(R.layout.item_line_8, parent, false));
+            case 3:
                 return new TraTwoViewHolder(mInflater.inflate(R.layout.item_line_8, parent, false));
         }
         return new TraOneViewHolder(mInflater.inflate(R.layout.item_line_6, parent, false));
@@ -74,14 +70,12 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
     }
 
     @Override
-    public int getItemViewType(int position)
-    {
+    public int getItemViewType(int position) {
         return getItem(position).mType;
     }
 
 
-    public TrafficItem getItem(int position)
-    {
+    public TrafficItem getItem(int position) {
         return mTrafficItems.get(position);
     }
 
@@ -92,11 +86,9 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
      * @param position
      */
     @Override
-    public void onBindViewHolder(final BaseViewHolder holder, int position)
-    {
+    public void onBindViewHolder(final BaseViewHolder holder, int position) {
         LayoutParams lp = null;
-        switch (getItemViewType(position))
-        {
+        switch (getItemViewType(position)) {
             case 0:
                 break;
             case 1:
@@ -109,17 +101,19 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
                 lp.height = 400;
                 holder.itemView.setLayoutParams(lp);
                 break;
+            case 3:
+                lp = holder.itemView.getLayoutParams();
+                lp.width = 1080;
+                holder.itemView.setLayoutParams(lp);
+                break;
         }
 
 
         holder.onBinView(getItem(position));
-        if (mItemClickListener != null)
-        {
-            holder.itemView.setOnClickListener(new View.OnClickListener()
-            {
+        if (mItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     mItemClickListener.onItemClick(v, holder.getLayoutPosition());
                 }
             });
@@ -134,8 +128,7 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder>
      * @return
      */
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return mTrafficItems.size();
     }
 

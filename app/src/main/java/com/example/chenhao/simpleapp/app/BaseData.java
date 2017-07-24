@@ -52,14 +52,14 @@ public class BaseData {
 
     public static void startData(final Activity context) {
         getWthrcdnData(context);
-
+        mSenseData[6] = new Random().nextInt(1000);
         new Thread() {
             @Override
             public void run() {
                 while (true) {
                     try {
 
-                        mRorundData[0] = new Random().nextInt(5 + 1);
+                        mRorundData[0] = new Random().nextInt(5) + 1;
                         mRorundData[1] = new Random().nextInt(5) + 1;
                         mRorundData[2] = new Random().nextInt(5) + 1;
                         mRorundData[3] = new Random().nextInt(5) + 1;
@@ -72,7 +72,6 @@ public class BaseData {
                         mSenseData[3] = new Random().nextInt(1000);
                         mSenseData[4] = new Random().nextInt(1000);
                         mSenseData[5] = new Random().nextInt(5) + 1;
-                        mSenseData[6] = new Random().nextInt(1000);
 
 
                         mTrafficData[0] = new Random().nextInt(150);

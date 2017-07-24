@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
+import org.achartengine.chart.PointStyle;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.ColoursXYSeriesRenderer;
@@ -21,46 +22,60 @@ import java.util.List;
 public class AchartLineView {
 
     private GraphicalView View;
-    XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-    XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+    XYMultipleSeriesRenderer renderer;
+    XYMultipleSeriesDataset dataset;
     XYSeries xySeries1;
-    ColoursXYSeriesRenderer xySeriesRenderer1 = new ColoursXYSeriesRenderer();
+    ColoursXYSeriesRenderer xySeriesRenderer1;
 
     public AchartLineView(Context context, String title) {
+
+        renderer = new XYMultipleSeriesRenderer();
+        dataset = new XYMultipleSeriesDataset();
+        xySeriesRenderer1 = new ColoursXYSeriesRenderer();
+
         renderer.setApplyBackgroundColor(true);
         renderer.setBackgroundColor(Color.TRANSPARENT);
         renderer.setMarginsColor(Color.TRANSPARENT);
+        renderer.setLabelsColor(Color.BLACK);
+        renderer.setXLabelsColor(Color.BLACK);
+        renderer.setYLabelsColor(0, Color.BLACK);
+        renderer.setMarginsColor(Color.WHITE);
+        renderer.setBackgroundColor(Color.WHITE);
+        renderer.setMargins(new int[]{15, 10, 0, 15});
+
         renderer.setShowLegend(false);
         renderer.setPanEnabled(false, false);
         renderer.setZoomEnabled(false, false);
         renderer.setShowLabels(false);
+
+
         renderer.setDisplayValues(true);
         renderer.setYLabelsVerticalPadding(20);
         renderer.setPointSize(10);
-        renderer.setMargins(new int[]{15,10,0,15});
-        renderer.setLabelsColor(Color.BLACK);
-        renderer.setXLabelsColor(Color.BLACK);
-        renderer.setYLabelsColor(0,Color.BLACK);
         renderer.setLabelsTextSize(18);
-        renderer.setMarginsColor(Color.WHITE);
-        renderer.setBackgroundColor(Color.WHITE);
-
 
         xySeriesRenderer1.setLineWidth(5);
-        xySeriesRenderer1.setColor(Color.BLUE);
+//        xySeriesRenderer1.setColor(Color.BLUE);
 
-        xySeriesRenderer1.setDisplayChartValues(true);
-        xySeriesRenderer1.setChartValuesTextSize(30);
         xySeriesRenderer1.setUseColor(true);
         xySeriesRenderer1.setPointColor(Color.GREEN);
         xySeriesRenderer1.setChartValueTextColor(Color.GREEN);
         xySeriesRenderer1.setWarningColor(Color.RED);
 
+        xySeriesRenderer1.setFillPoints(true);
+        xySeriesRenderer1.setPointStrokeWidth(10);
+        xySeriesRenderer1.setPointStyle(PointStyle.CIRCLE);
+
+        xySeriesRenderer1.setChartValuesTextSize(30);
+
+        xySeriesRenderer1.setDisplayChartValues(true);
+        xySeriesRenderer1.setWarningMaxValue(10);
+        xySeriesRenderer1.setWarningMinValue(0);
+
 
         renderer.addSeriesRenderer(xySeriesRenderer1);
 
         xySeries1 = new XYSeries("");
-
         dataset.addSeries(xySeries1);
 
         View = ChartFactory.getCubeLineChartView(context, dataset, renderer, 0.15f);

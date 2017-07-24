@@ -11,6 +11,8 @@ import com.example.chenhao.simpleapp.base.UserInfoBean;
 import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
 import com.example.chenhao.simpleapp.utils.Utils;
 
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends SuperBaseActivity {
 
     private EditText mUserNameText;
@@ -115,6 +117,36 @@ public class RegisterActivity extends SuperBaseActivity {
             mEmailText.requestFocus();
             return;
         }
+
+        Pattern userPattern = Pattern.compile("[a-zA-Z][a-zA-Z0-9]{4,8}$");
+        Pattern passPattern = Pattern.compile("^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,12}$");
+
+
+        if (!userPattern.matcher(userNname).matches()) {
+            mUserNameText.setError("用户名必须以英文字母开头，长度5-8位！(不包含字符)");
+            mUserNameText.requestFocus();
+            return;
+        }
+        if (!passPattern.matcher(pass1).matches()) {
+            mPassText1.setError("密码为6-12位，要求必须包含大小写英文字母和数字！");
+            mPassText1.requestFocus();
+            return;
+        }
+        String num = "[1][358]\\d{9}";
+
+        if (!phone.matches(num)) {
+            mPhoneTextx.setError("手机号只能输入以13、15、18开头的11位数字！");
+            mPhoneTextx.requestFocus();
+            return;
+        }
+        String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+
+        if (!email.matches(str)) {
+            mEmailText.setError("邮箱格式不正确！");
+            mEmailText.requestFocus();
+            return;
+        }
+
 
         instance.insert(new UserInfoBean(userNname, pass1, name, email, phone, System.currentTimeMillis() + "", 1));
         Utils.showToast("注册成功");

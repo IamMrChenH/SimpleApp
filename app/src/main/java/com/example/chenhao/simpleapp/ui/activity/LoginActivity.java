@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -44,6 +46,11 @@ public class LoginActivity extends SuperBaseActivity {
     private View mLoginFormView;
     private UserTableDBopenhelerService instance;
 
+    private CheckBox mRememberPassWord;
+    private CheckBox mAutoLogin;
+    private SharedPreferences mSharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +67,16 @@ public class LoginActivity extends SuperBaseActivity {
 
         instance.insert(new UserInfoBean("admin", "admin", "管理员", "admin@xx.com",
                 "1008611", "2017-7-17-21:55", 0));
+        mSharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+//        CarTableTableDBopenhelerService.getInstance(this).insert(new Car(1, 1, "2号小车", 1000));
+//        CarTableTableDBopenhelerService.getInstance(this).updateBalance(1, 200);
+//        CarTableTableDBopenhelerService.getInstance(this).updateBalance(2, 2000);
+//        CarTableTableDBopenhelerService.getInstance(this).findAllCar();
+
+
+//        CarRecordTableTableDBopenhelerService.getInstance(this).insert(new CarRecord(3, 100, "充值", 1, "2017-7-24 0:17"));
+//        CarRecordTableTableDBopenhelerService.getInstance(this).findAllCar();
 
 
     }
@@ -67,16 +84,10 @@ public class LoginActivity extends SuperBaseActivity {
     private void initViews() {
         mEmailView = (AutoCompleteTextView) findViewById(R.id.user_name);
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+
+
+        mRememberPassWord = findView(R.id.Remember_Password);
+        mAutoLogin = findView(R.id.Auto_Login);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -88,7 +99,30 @@ public class LoginActivity extends SuperBaseActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    return true;
+                }
+                return false;
+            }
+        });
+        mRememberPassWord.setChecked(mSharedPreferences.getBoolean("re", false));
+        mAutoLogin.setChecked(mSharedPreferences.getBoolean("auto", false));
+
+        if (mRememberPassWord.isChecked()) {
+            mEmailView.setText(mSharedPreferences.getString("user", ""));
+            mPasswordView.setText(mSharedPreferences.getString("pass", ""));
+        }
+        if (mAutoLogin.isChecked()) attemptLogin();
+
+
     }
+
 
     private void attemptLogin() {
         if (mAuthTask != null) {
@@ -215,6 +249,7 @@ public class LoginActivity extends SuperBaseActivity {
             mAuthTask = null;
             showProgress(false);
             BaseData.mUserInfoBean = mUserInfoBean;
+            reLogin();
             switch (mUserInfoBean.getRole()) {
                 case 0:
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
@@ -239,6 +274,21 @@ public class LoginActivity extends SuperBaseActivity {
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+
+        public void reLogin() {
+            mSharedPreferences.edit()
+                    .putBoolean("re", mRememberPassWord.isChecked())
+                    .putBoolean("auto", mAutoLogin.isChecked())
+                    .commit();
+            if (mRememberPassWord.isChecked()) {
+                mSharedPreferences.edit()
+                        .putString("user", mUserInfoBean.getUserName())
+                        .putString("pass", mUserInfoBean.getPassword())
+                        .commit();
+            }
+
         }
     }
 }

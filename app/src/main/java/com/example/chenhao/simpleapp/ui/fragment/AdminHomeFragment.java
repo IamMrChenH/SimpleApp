@@ -17,6 +17,7 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.BaseFragment;
 import com.example.chenhao.simpleapp.bean.TrafficItem;
 import com.example.chenhao.simpleapp.http.WthrcdnData;
+import com.example.chenhao.simpleapp.ui.activity.CarAddActivity;
 import com.example.chenhao.simpleapp.ui.activity.PermissionActivity;
 import com.example.chenhao.simpleapp.ui.activity.RedLedManageActivity;
 import com.example.chenhao.simpleapp.ui.activity.StreetLedActivity;
@@ -78,6 +79,7 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
         mItems.add(new TrafficItem(1, R.mipmap.ic_launcher_round, "交通环境"));
         mItems.add(new TrafficItem(2, R.mipmap.ic_launcher_round, "阈值设置"));
         mItems.add(new TrafficItem(1, R.mipmap.ic_launcher_round, "红绿灯管理"));
+        mItems.add(new TrafficItem(3, R.mipmap.ic_launcher_round, "小车充值"));
 //        mItems.add(new TrafficItem(1, R.mipmap.ic_launcher_round, "历史环境"));
 
         mTrafficHomeAdapter = new TrafficHomeAdapter(getActivity(), mItems);
@@ -139,10 +141,10 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
                 showToast("position:----" + position);
                 switch (position) {
                     case 0:
-//                        showToast("今日费率");
+                        showToast(WthrcdnData.showData());
                         break;
                     case 1:
-                        showToast("明日费率");
+                        showToast(WthrcdnData.showData());
                         break;
                     case 2:
 
@@ -170,7 +172,10 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
                         showToast("红绿灯管理");
                         startActivity(new Intent(getActivity(), RedLedManageActivity.class));
                         break;
-
+                    case 8:
+                        showToast("小车充值");
+                        startActivity(new Intent(getActivity(), CarAddActivity.class));
+                        break;
                 }
 
             }
@@ -220,7 +225,7 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
             mItems.set(0, new TrafficItem(0, R.mipmap.ic_launcher_round, R.drawable.ic_item_back1,
                     WthrcdnData.type, WthrcdnData.fengxiang + ":" + WthrcdnData.fengli));
             mItems.set(1, new TrafficItem(0, R.mipmap.ic_launcher_round, R.drawable.ic_item_back2,
-                    WthrcdnData.wendu+ "℃", WthrcdnData.ganmao));
+                    WthrcdnData.wendu + "℃", WthrcdnData.ganmao));
             mTrafficHomeAdapter.notifyDataSetChanged();
             mViewPagerCurrentPosition = mViewPagerCurrentPosition + 1;
             if (mViewPagerCurrentPosition >= 3)

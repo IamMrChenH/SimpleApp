@@ -41,6 +41,7 @@
             android:layout_margin="3dp"
             android:layout_toRightOf="@id/item_line_imager"
             android:text="今日限行：5和0"
+            android:singleLine="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/white" />
 

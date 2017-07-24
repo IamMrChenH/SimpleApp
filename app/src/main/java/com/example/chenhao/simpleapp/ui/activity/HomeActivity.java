@@ -20,6 +20,7 @@ import com.example.chenhao.simpleapp.ui.fragment.AdminHomeFragment;
 import com.example.chenhao.simpleapp.ui.fragment.EnvirFragment;
 import com.example.chenhao.simpleapp.ui.fragment.OtherFragment;
 import com.example.chenhao.simpleapp.ui.fragment.TrafficFragment;
+import com.example.chenhao.simpleapp.utils.Utils;
 
 public class HomeActivity extends SuperBaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "HomeActivity";
@@ -106,10 +107,10 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-                drawer.closeDrawer(Gravity.RIGHT);
+            if (drawer.isDrawerOpen(Gravity.START)) {
+                drawer.closeDrawer(Gravity.START);
             } else {
-                drawer.openDrawer(Gravity.RIGHT);
+                drawer.openDrawer(Gravity.START);
             }
         }
         return true;
@@ -139,22 +140,51 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
             startActivity(new Intent(this, RedLedManageActivity.class));
         } else if (id == R.id.nav_yuzhi_settings) {
             startActivity(new Intent(this, YuZhiActivity.class));
+
+        } else if (id == R.id.nav_car_add) {
+            startActivity(new Intent(this, CarAddActivity.class));
+        } else if (id == R.id.nav_version) {
+            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
         } else if (id == R.id.nav_exit) {
+
+            getSharedPreferences("login", MODE_PRIVATE).edit().clear().commit();
             System.exit(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(Gravity.RIGHT);
+        drawer.closeDrawer(Gravity.START);
         return true;
     }
+
+    boolean isExit = false;
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(Gravity.RIGHT)) {
-            drawer.closeDrawer(Gravity.RIGHT);
+        if (drawer.isDrawerOpen(Gravity.START)) {
+            drawer.closeDrawer(Gravity.START);
         } else {
-            super.onBackPressed();
+            if (!isExit) {
+                Utils.showToast("再按一次退出！");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        isExit = true;
+                        try {
+                            sleep(3000);
+                            isExit = false;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }.start();
+            } else {
+                System.exit(0);
+            }
+
+
+//            super.onBackPressed();
         }
     }
 }

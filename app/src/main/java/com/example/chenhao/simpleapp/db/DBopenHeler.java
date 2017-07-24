@@ -46,8 +46,27 @@ public class DBopenHeler extends SQLiteOpenHelper {
                 "regist_time text," +
                 "role int )");
 //   insert（插入）：db.execSQL("insert into person (A,B)  values(?,?)",new Object[]{values1,values2});
+        db.execSQL("create table car(id integer PRIMARY KEY AUTOINCREMENT," +
+                " userId  int," +
+                " carId   int," +
+                " carName text," +
+                " balance double)");
 
-//        db.execSQL("insert into app_user (insert into app_user(user_name,password,name,email,phone,regist_time,role)values('admin','admin','管理员','admin@xx.com','1008611','2017-7-17-21:55',0)");
+        db.execSQL("insert into car(userId,carId,carName,balance)" +
+                "            values(1,1,'1号车',100)");
+
+
+        db.execSQL("create table car_record(id integer PRIMARY KEY AUTOINCREMENT," +
+                " carId  int," +
+                "money double," +
+                "opType text," +
+                "userId int," +
+                "opTime text)");
+        db.execSQL("insert into car_record(carId,money,opType,userId,opTime)" +
+                "values(1,10,'充值',1,'2017-7-24 05:30')");
+
+//        编号，车编号，金额，类型，操作者，操作时间
+//        1,      1     10     充值   1       2017-7-24 05:30
 
 
     }

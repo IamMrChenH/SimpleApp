@@ -1,5 +1,6 @@
 package com.example.chenhao.simpleapp.ui.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -21,6 +22,10 @@ public class RedLedManageActivity extends BaseActivity implements Runnable {
     RedLedManageListViewAdapter mAdapter;
     public int[] mOldTimes = {20, 10, 10, 10, 10};
     public int[] mCurTimes = {20, 10, 10, 10, 10};
+
+    public int[] mColors = {Color.parseColor("#6ab82e"), Color.parseColor("#ece93a"),
+            Color.parseColor("#f49b25"), Color.parseColor("#e33532"),
+            Color.parseColor("#b01e23")};
 
 
     @Override
@@ -126,6 +131,8 @@ public class RedLedManageActivity extends BaseActivity implements Runnable {
             t3.setText((position + 1) + "");
             t4.setText(mOldTimes[position] + "");
             t5.setText(mCurTimes[position] + "");
+
+            convertView.setBackgroundColor(mColors[BaseData.mRorundData[position] - 1]);
 
             return convertView;
         }

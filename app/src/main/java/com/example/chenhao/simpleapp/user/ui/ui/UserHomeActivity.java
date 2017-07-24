@@ -19,6 +19,7 @@ import com.example.chenhao.simpleapp.user.ui.fragment.AddFragment;
 import com.example.chenhao.simpleapp.user.ui.fragment.ChuXingFragment;
 import com.example.chenhao.simpleapp.user.ui.fragment.HomeFragment;
 import com.example.chenhao.simpleapp.user.ui.fragment.UserHomeFragment;
+import com.example.chenhao.simpleapp.utils.Utils;
 
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 
@@ -84,13 +85,34 @@ public class UserHomeActivity extends BaseActivity
 
     }
 
+    boolean isExit = false;
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (!isExit) {
+                Utils.showToast("再按一次退出！");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        isExit = true;
+                        try {
+                            sleep(3000);
+                            isExit = false;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }.start();
+            } else {
+                System.exit(0);
+            }
+
+//            super.onBackPressed();
         }
     }
 
@@ -119,7 +141,10 @@ public class UserHomeActivity extends BaseActivity
             bt.replace(R.id.content, new ChuXingFragment()).commit();
         } else if (id == R.id.nav_add) {
             bt.replace(R.id.content, new AddFragment()).commit();
+        } else if (id == R.id.nav_version) {
+            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
         } else if (id == R.id.nav_exit) {
+            getSharedPreferences("login", MODE_PRIVATE).edit().clear().commit();
             System.exit(0);
         }
 

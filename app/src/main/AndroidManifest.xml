@@ -60,7 +60,9 @@
         <activity
             android:name=".ui.activity.PermissionActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ui.activity.YuZhiActivity"></activity>
+        <activity android:name=".ui.activity.YuZhiActivity" />
+        <activity android:name=".ui.activity.CarAddActivity" />
+        <activity android:name=".ui.activity.CarRecordActivity"></activity>
     </application>
 
 </manifest>
