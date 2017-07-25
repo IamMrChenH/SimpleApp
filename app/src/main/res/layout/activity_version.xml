@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/feifei"
+    android:orientation="vertical"
+    tools:context="com.example.chenhao.simpleapp.ui.activity.VersionActivity">
+
+    <include layout="@layout/layout_toolbar_title" />
+
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/tx" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="\n\n\n版本号V1.0\n\nMr.Chen\n\n福建船政交通职业学院\n\n\n\n\n\n\n\n\n\n\n可以往下拖动哦！\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n什么都没有！！\n\n\n\n\n\n\n\n\n\n\n\nEnd\n\n\n"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.chenhao.simpleapp.base;
 
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+
     public void showMsgDialog(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(msg)
@@ -27,4 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+//        super.onSaveInstanceState(outState, outPersistentState);
+    }
 }

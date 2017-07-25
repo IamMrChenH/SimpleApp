@@ -47,7 +47,7 @@ public class BaseData {
     public static UserBean mUserBean = new UserBean();
     public static int[] mCarMoney = {100, 200, 300, 400};
     public static int mCarMinMoney = 0;
-    public static int mCarMaxMoney = 1000;
+    public static int mCarMaxMoney = 5*1000;
 
 
     public static void startData(final Activity context) {

@@ -16,10 +16,10 @@ import android.widget.TextView;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.BaseActivity;
+import com.example.chenhao.simpleapp.ui.activity.VersionActivity;
 import com.example.chenhao.simpleapp.user.ui.ui.fragment.AddFragment;
 import com.example.chenhao.simpleapp.user.ui.ui.fragment.ChuXingFragment;
 import com.example.chenhao.simpleapp.user.ui.ui.fragment.HomeFragment;
-import com.example.chenhao.simpleapp.user.ui.ui.fragment.UserHomeFragment;
 import com.example.chenhao.simpleapp.utils.Utils;
 
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
@@ -119,13 +119,14 @@ public class UserHomeActivity extends BaseActivity
         if (id == R.id.nav_user_home) {
             //主界面
             bt.replace(R.id.content, new HomeFragment()).commit();
-        } else if (id == R.id.nav_user_info) {
+        }/* else if (id == R.id.nav_user_info) {
             //我的资料
             bt.replace(R.id.content, UserHomeFragment.newInstance("a2")).commit();
-        } else if (id == R.id.nav_user_car) {
+        }*/ else if (id == R.id.nav_user_car) {
             //我的小车
 //            bt.replace(R.id.content, UserHomeFragment.newInstance("a1")).commit();
             startActivity(new Intent(UserHomeActivity.this, CarActivity.class));
+            finish();
 
         } else if (id == R.id.nav_chuxing) {
             //我的出行
@@ -135,8 +136,9 @@ public class UserHomeActivity extends BaseActivity
             bt.replace(R.id.content, new AddFragment()).commit();
         } else if (id == R.id.nav_version) {
             //版本
-            showMsgDialog("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+//            showMsgDialog("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
 //            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+            startActivity(new Intent(this, VersionActivity.class));
         } else if (id == R.id.nav_exit) {
             //退出
             getSharedPreferences("login", MODE_PRIVATE).edit().clear().commit();

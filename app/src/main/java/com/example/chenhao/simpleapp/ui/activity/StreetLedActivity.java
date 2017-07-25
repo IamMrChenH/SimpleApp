@@ -1,7 +1,7 @@
 package com.example.chenhao.simpleapp.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -11,10 +11,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.chenhao.simpleapp.R;
-import com.example.chenhao.simpleapp.base.BaseActivity;
+import com.example.chenhao.simpleapp.base.SuperBaseActivity;
 import com.example.chenhao.simpleapp.utils.Utils;
 
-public class StreetLedActivity extends BaseActivity {
+import java.util.Date;
+
+public class StreetLedActivity extends SuperBaseActivity implements Runnable {
     private TextView mTitleText;
     private ImageView mLed;
     private Switch mAutowitch1, mOpenwitch2;
@@ -25,9 +27,7 @@ public class StreetLedActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_street_led);
-        initToolbar();
         initViews();
-
 
     }
 
@@ -47,6 +47,7 @@ public class StreetLedActivity extends BaseActivity {
                     statusStr = "当前为自动模式";
                 Utils.showToast(statusStr);
                 mAutoMode = isChecked;
+//                autoLed();
 
             }
         });
@@ -76,13 +77,32 @@ public class StreetLedActivity extends BaseActivity {
     }
 
 
-    private void initToolbar() {
-        Toolbar mToolbar = findView(R.id.mToolbar);
-        setSupportActionBar(mToolbar);
-        mToolbar.setTitle(" ");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(" ");
+    public void autoLed() {
+        if (!mAutoMode) return;
+
+        Date date = new Date(System.currentTimeMillis());
+        int hours = date.getHours();
+        Log.e("233", "autoLed: " + hours);
+        try {
+            if (hours > 19 || hours < 7) {
+                mLed.setImageResource(R.mipmap.roadlamp_on);
+                Animation animation = AnimationUtils.loadAnimation(StreetLedActivity.this, R.anim.street_led_anim);
+                mLed.startAnimation(animation);
+                mOpenwitch2.setChecked(true);
+
+            } else {
+                mLed.setImageResource(R.mipmap.roadlamp_off);
+                mLed.clearAnimation();
+                mOpenwitch2.setChecked(false);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -93,5 +113,26 @@ public class StreetLedActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try {
+            mBaseHandler.postDelayed(this, 1 * 1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String getToolbarTitle() {
+        return "路灯控制";
+    }
+
+    @Override
+    public void run() {
+        autoLed();
+        mBaseHandler.postDelayed(this, 5 * 1000);
     }
 }

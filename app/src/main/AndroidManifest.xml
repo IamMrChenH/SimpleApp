@@ -64,7 +64,8 @@
         <activity android:name=".ui.activity.CarAddActivity" />
         <activity android:name=".ui.activity.CarRecordActivity" />
         <activity android:name=".user.ui.ui.activity.CarActivity" />
-        <activity android:name=".user.ui.ui.activity.CarInfoActivity"></activity>
+        <activity android:name=".user.ui.ui.activity.CarInfoActivity" />
+        <activity android:name=".ui.activity.VersionActivity"></activity>
     </application>
 
 </manifest>

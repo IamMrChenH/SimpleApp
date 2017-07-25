@@ -88,11 +88,11 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
                 String s = editText.getText().toString();
                 try {
                     Integer integer = Integer.valueOf(s);
-                    if (car.getBalance() > BaseData.mCarMaxMoney) {
+                    if (car.getBalance() > BaseData.mSenseMaxData[6]) {
                         showMsgDialog("账户余额是否超过设置的阈值,无法充值！");
                         return;
-                    } else if (car.getBalance() + integer > BaseData.mCarMaxMoney) {
-                        showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - car.getBalance()) + "元");
+                    } else if (car.getBalance() + integer > BaseData.mSenseMaxData[6]) {
+                        showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mSenseMaxData[6] - car.getBalance()) + "元");
                         return;
                     }
 
@@ -101,7 +101,7 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
                                 integer,
                                 "充值",
                                 mUserInfoBean.getId(),
-                                new SimpleDateFormat("yy-MM-dd HH:mm").format(System.currentTimeMillis())));
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())));
 
 //                        Utils.showToast("充值成功");
                         showMsgDialog("充值成功");

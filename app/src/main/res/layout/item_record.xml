@@ -26,10 +26,19 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="充值ID"
+        android:text="用户id"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:textSize="15sp" />
 
+    <TextView
+        android:id="@+id/item_t4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="小车id"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/item_t2"

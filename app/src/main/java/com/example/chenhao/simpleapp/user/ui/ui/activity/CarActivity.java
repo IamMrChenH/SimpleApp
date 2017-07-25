@@ -3,7 +3,9 @@ package com.example.chenhao.simpleapp.user.ui.ui.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -71,8 +73,10 @@ public class CarActivity extends SuperBaseActivity {
                 split = carId.split(",");
                 mCars.clear();
                 for (int i = 0; i < split.length; i++) {
-                    Car car = instanceCar.findCar(Integer.valueOf(split[i]));
-                    mCars.add(car);
+                    if (!TextUtils.isEmpty(split[i])) {
+                        Car car = instanceCar.findCar(Integer.valueOf(split[i]));
+                        mCars.add(car);
+                    }
                 }
 
             } else {
@@ -156,7 +160,8 @@ public class CarActivity extends SuperBaseActivity {
                     int num = 0;
                     for (int j = 0; j < split.length; j++) {
                         if (!split[j].equals(item.getId() + "")) {
-                            temp[num++] = split[j];
+                            if (!TextUtils.isEmpty(split[j]))
+                                temp[num++] = split[j];
                         }
                     }
                     split = temp;
@@ -167,6 +172,16 @@ public class CarActivity extends SuperBaseActivity {
             });
             return view;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(CarActivity.this, UserHomeActivity.class));
+            finish();
+        }
+        return true;
+//        return super.onOptionsItemSelected(item);
     }
 
     /*********************************************************/
@@ -230,6 +245,7 @@ public class CarActivity extends SuperBaseActivity {
                     instance.updateCarId(BaseData.mUserInfoBean.getId(), splitAndString(split));
                     update();
                     dissmissDialog();
+
                 }
             });
             return view;

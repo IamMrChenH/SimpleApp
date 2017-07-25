@@ -20,6 +20,7 @@ public class CarRecordActivity extends SuperBaseActivity {
     List<CarRecord> carRecord;
     private ListView mListView;
     CarRecordActivityListViewAdapter mAdapter;
+    private int Key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +33,22 @@ public class CarRecordActivity extends SuperBaseActivity {
     }
 
     private void initDatas() {
-        int key = getIntent().getIntExtra("key", 0);
+        Key = getIntent().getIntExtra("key", 0);
         instance = CarRecordTableTableDBopenhelerService.getInstance(this);
-        carRecord = instance.findCarRecord(key);
-        Log.e("233", "initDatas: " + key);
+        carRecord = instance.findCarRecord(Key);
+        Log.e("233", "initDatas: " + Key);
 
     }
 
     private void initViews() {
         mListView = findView(R.id.mListView);
+        mListView.setEmptyView(findView(R.id.isEmy));
         mListView.setAdapter(mAdapter = new CarRecordActivityListViewAdapter());
     }
 
     @Override
     public String getToolbarTitle() {
-        return "";
+        return this.Key + "号小车历史记录";
     }
 
 

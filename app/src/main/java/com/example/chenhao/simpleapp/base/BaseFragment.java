@@ -87,4 +87,9 @@ public abstract class BaseFragment extends Fragment {
                 .show();
 
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+    }
 }

@@ -15,10 +15,13 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.BaseFragment;
 import com.example.chenhao.simpleapp.bean.Car;
+import com.example.chenhao.simpleapp.bean.CarRecord;
+import com.example.chenhao.simpleapp.db.CarRecordTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.DBopenhelerService;
 import com.example.chenhao.simpleapp.user.ui.ui.activity.RecordActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AddFragment extends BaseFragment implements AdapterView.OnItemClickListener {
@@ -105,11 +108,11 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
 
             double balance = car.getBalance();
 //            int temp = BaseData.mCarMoney[selectedItemPosition];
-            if (balance > BaseData.mCarMaxMoney) {
+            if (balance > BaseData.mSenseMaxData[6]) {
                 showMsgDialog("账户余额是否超过设置的阈值,无法充值！");
                 return;
-            } else if (balance + mAddTempMoney > BaseData.mCarMaxMoney) {
-                showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - balance) + "元");
+            } else if (balance + mAddTempMoney > BaseData.mSenseMaxData[6]) {
+                showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mSenseMaxData[6] - balance) + "元");
                 return;
             }
             BaseData.mCarMoney[selectedItemPosition] = (int) (balance + mAddTempMoney);
@@ -118,6 +121,11 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
             buffer.append(selectedItemPosition).append(",")
                     .append(System.currentTimeMillis()).append(",")
                     .append(mAddTempMoney);
+
+            CarRecordTableTableDBopenhelerService.getInstance(getActivity())
+                    .insert(new CarRecord(car.getId(), mAddTempMoney, "充值", BaseData.mUserInfoBean.getId(),
+                            new SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())));
+
 
             instance.insertRecord(buffer.toString());
             List<String> record = instance.findRecord();

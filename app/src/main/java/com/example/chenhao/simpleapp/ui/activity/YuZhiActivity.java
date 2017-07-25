@@ -64,6 +64,11 @@ public class YuZhiActivity extends SuperBaseActivity {
 
             t1.setText(BaseData.mSenseName[i]);
             t2.setText(BaseData.mSenseData[i] + "");
+            if (i == BaseData.mSenseName.length-1) {
+                t2.setText(" ");
+            }
+
+
             t3.setText(BaseData.mSenseMinData[i] + "");
             t4.setText(BaseData.mSenseMaxData[i] + "");
 

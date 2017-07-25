@@ -84,11 +84,27 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
         //以上 自动生成。我不管
         View view = null;
         navigationView.addHeaderView(view = getLayoutInflater().inflate(R.layout.nav_header_user_home, null));
-        mNameText = (TextView) view.findViewById(R.id.item_name);
-        mEmailText = (TextView) view.findViewById(R.id.email);
+        try {
+            mNameText = (TextView) view.findViewById(R.id.item_name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            mEmailText = (TextView) view.findViewById(R.id.email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        mNameText.setText(BaseData.mUserInfoBean.getName());
-        mEmailText.setText(BaseData.mUserInfoBean.getEmail());
+        try {
+            mNameText.setText(BaseData.mUserInfoBean.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            mEmailText.setText(BaseData.mUserInfoBean.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -145,7 +161,8 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
             startActivity(new Intent(this, CarAddActivity.class));
         } else if (id == R.id.nav_version) {
 //            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
-            showMsgDialog("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+//            showMsgDialog("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+            startActivity(new Intent(HomeActivity.this,VersionActivity.class));
         } else if (id == R.id.nav_exit) {
 
             getSharedPreferences("login", MODE_PRIVATE).edit().clear().commit();
