@@ -1,7 +1,7 @@
 package com.example.chenhao.simpleapp.user.ui.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,6 +14,7 @@ import com.example.chenhao.simpleapp.bean.Car;
 import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.user.bean.HomeMenuItem;
 import com.example.chenhao.simpleapp.user.ui.adapter.HomeListAdapter;
+import com.example.chenhao.simpleapp.user.ui.ui.activity.CarInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,11 +130,14 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
 
     @Override
     public void onClick(View view) {
-        FragmentTransaction bt = getActivity().getSupportFragmentManager().beginTransaction();
+//        FragmentTransaction bt = getActivity().getSupportFragmentManager().beginTransaction();
         switch (view.getId()) {
             case R.id.item_t3:
-                bt.replace(R.id.content, UserHomeFragment.newInstance("a1")).commit();
+//                bt.replace(R.id.content, UserHomeFragment.newInstance("a1")).commit();
+                startActivity(new Intent(getActivity(), CarInfoActivity.class)
+                        .putExtra("key", 2));
                 break;
+
         }
     }
 }
