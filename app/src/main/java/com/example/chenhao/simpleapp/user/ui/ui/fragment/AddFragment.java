@@ -1,4 +1,4 @@
-package com.example.chenhao.simpleapp.user.ui.fragment;
+package com.example.chenhao.simpleapp.user.ui.ui.fragment;
 
 import android.content.Intent;
 import android.util.Log;
@@ -8,21 +8,22 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.BaseFragment;
+import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.DBopenhelerService;
-import com.example.chenhao.simpleapp.user.ui.ui.RecordActivity;
-import com.example.chenhao.simpleapp.utils.Utils;
+import com.example.chenhao.simpleapp.user.ui.ui.activity.RecordActivity;
 
 import java.util.List;
 
-public class    AddFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+public class AddFragment extends BaseFragment implements AdapterView.OnItemClickListener {
     private GridView mGridView;
     private AddFragmentGridViewAdapter mAdapter;
-    private EditText mItemEdit1;
+    private Spinner mItemSpinner1;
     private EditText mItemEdit2;
 
     /**
@@ -30,6 +31,7 @@ public class    AddFragment extends BaseFragment implements AdapterView.OnItemCl
      */
     public float[] mOriginal = {10, 20, 30, 50, 100, 200, 300, 500, 1000};
     private DBopenhelerService instance;
+    private CarTableTableDBopenhelerService instanceCar;
 
     @Override
     public int getLayoutId() {
@@ -39,13 +41,13 @@ public class    AddFragment extends BaseFragment implements AdapterView.OnItemCl
     @Override
     public void initFragmentDataAndView() {
         instance = DBopenhelerService.getInstance(getActivity());
-
+        instanceCar = CarTableTableDBopenhelerService.getInstance(getActivity());
         initViews();
     }
 
     private void initViews() {
 
-        mItemEdit1 = findView(R.id.item_edit1);
+        mItemSpinner1 = findView(R.id.item_edit1);
         mItemEdit2 = findView(R.id.item_edit2);
 
         mGridView = findView(R.id.mGridView);
@@ -63,7 +65,7 @@ public class    AddFragment extends BaseFragment implements AdapterView.OnItemCl
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Utils.showToast("输入框不能为空！");
+                    showMsgDialog("输入框不能为空！");
                 }
 
 
@@ -82,7 +84,7 @@ public class    AddFragment extends BaseFragment implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String mIdStr = mItemEdit1.getText().toString();
+
         float mAddTempMoney = (float) (mOriginal[position]);
 
         if (position == mOriginal.length - 1) {
@@ -95,39 +97,28 @@ public class    AddFragment extends BaseFragment implements AdapterView.OnItemCl
 
 
     public void addMoney(float mAddTempMoney) {
-        String mIdStr = mItemEdit1.getText().toString();
+        int selectedItemPosition = mItemSpinner1.getSelectedItemPosition();
         try {
-            Integer mID = null;
-            try {
-                mID = Integer.valueOf(mIdStr);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Utils.showToast("ID不能为空！");
-                return;
-            }
 
-
-            int temp = BaseData.mCarMoney[mID];
-
-            if (temp >BaseData.mCarMaxMoney) {
-                mItemEdit1.setError("账户余额是否超过设置的阈值,无法充值！");
-                mItemEdit1.requestFocus();
+            int temp = BaseData.mCarMoney[selectedItemPosition];
+            if (temp > BaseData.mCarMaxMoney) {
+                showMsgDialog("账户余额是否超过设置的阈值,无法充值！");
                 return;
             } else if (temp + mAddTempMoney > BaseData.mCarMaxMoney) {
-                mItemEdit1.setError("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - temp) + "元");
-                mItemEdit1.requestFocus();
+                showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - temp) + "元");
                 return;
             }
-            BaseData.mCarMoney[mID] = (int) (temp + mAddTempMoney);
-            Utils.showToast("充值成功！");
+            BaseData.mCarMoney[selectedItemPosition] = (int) (temp + mAddTempMoney);
+            showMsgDialog("充值成功!");
             StringBuffer buffer = new StringBuffer();
-            buffer.append(mID).append(",")
+            buffer.append(selectedItemPosition).append(",")
                     .append(System.currentTimeMillis()).append(",")
                     .append(mAddTempMoney);
 
             instance.insertRecord(buffer.toString());
-
             List<String> record = instance.findRecord();
+            double balance = instanceCar.findCar(selectedItemPosition + 1).getBalance();
+            instanceCar.updateBalance(selectedItemPosition + 1, balance + mAddTempMoney);
 
             for (int i = 0; i < record.size(); i++) {
                 Log.e("233", "addMoney: " + record.get(i));
@@ -135,7 +126,7 @@ public class    AddFragment extends BaseFragment implements AdapterView.OnItemCl
 
         } catch (Exception e) {
             e.printStackTrace();
-            Utils.showToast("输入异常！");
+            showMsgDialog("输入异常！");
         }
     }
 

@@ -1,5 +1,6 @@
-package com.example.chenhao.simpleapp.user.ui.ui;
+package com.example.chenhao.simpleapp.user.ui.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -15,10 +16,10 @@ import android.widget.TextView;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.BaseActivity;
-import com.example.chenhao.simpleapp.user.ui.fragment.AddFragment;
-import com.example.chenhao.simpleapp.user.ui.fragment.ChuXingFragment;
-import com.example.chenhao.simpleapp.user.ui.fragment.HomeFragment;
-import com.example.chenhao.simpleapp.user.ui.fragment.UserHomeFragment;
+import com.example.chenhao.simpleapp.user.ui.ui.fragment.AddFragment;
+import com.example.chenhao.simpleapp.user.ui.ui.fragment.ChuXingFragment;
+import com.example.chenhao.simpleapp.user.ui.ui.fragment.HomeFragment;
+import com.example.chenhao.simpleapp.user.ui.ui.fragment.UserHomeFragment;
 import com.example.chenhao.simpleapp.utils.Utils;
 
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
@@ -39,19 +40,6 @@ public class UserHomeActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.mToolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                finish();
-//                            }
-//                        }).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -129,21 +117,28 @@ public class UserHomeActivity extends BaseActivity
         int id = item.getItemId();
         FragmentTransaction bt = getSupportFragmentManager().beginTransaction();
         if (id == R.id.nav_user_home) {
-            // Handle the camera action
+            //主界面
             bt.replace(R.id.content, new HomeFragment()).commit();
         } else if (id == R.id.nav_user_info) {
-            // Handle the camera action
+            //我的资料
             bt.replace(R.id.content, UserHomeFragment.newInstance("a2")).commit();
         } else if (id == R.id.nav_user_car) {
-            // Handle the camera action
-            bt.replace(R.id.content, UserHomeFragment.newInstance("a1")).commit();
+            //我的小车
+//            bt.replace(R.id.content, UserHomeFragment.newInstance("a1")).commit();
+            startActivity(new Intent(UserHomeActivity.this, CarActivity.class));
+
         } else if (id == R.id.nav_chuxing) {
+            //我的出行
             bt.replace(R.id.content, new ChuXingFragment()).commit();
         } else if (id == R.id.nav_add) {
+            //充值
             bt.replace(R.id.content, new AddFragment()).commit();
         } else if (id == R.id.nav_version) {
-            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+            //版本
+            showMsgDialog("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+//            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
         } else if (id == R.id.nav_exit) {
+            //退出
             getSharedPreferences("login", MODE_PRIVATE).edit().clear().commit();
             System.exit(0);
         }

@@ -1,4 +1,4 @@
-package com.example.chenhao.simpleapp.user.ui.ui;
+package com.example.chenhao.simpleapp.user.ui.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;

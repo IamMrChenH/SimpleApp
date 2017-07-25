@@ -16,7 +16,6 @@ import com.example.chenhao.simpleapp.bean.Car;
 import com.example.chenhao.simpleapp.bean.CarRecord;
 import com.example.chenhao.simpleapp.db.CarRecordTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
-import com.example.chenhao.simpleapp.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -95,7 +94,8 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
                                 mUserInfoBean.getId(),
                                 new SimpleDateFormat("yy-MM-dd HH:mm").format(System.currentTimeMillis())));
 
-                        Utils.showToast("充值成功");
+//                        Utils.showToast("充值成功");
+                        showMsgDialog("充值成功");
                         updateData();
                         dialog.dismiss();
 

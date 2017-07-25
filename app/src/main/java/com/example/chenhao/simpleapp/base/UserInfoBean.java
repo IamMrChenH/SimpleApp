@@ -13,6 +13,7 @@ public class UserInfoBean {
     private String mPhone;
     private String mRegistTime;
     private int mRole;
+    private String mCarId = null;
 
     public UserInfoBean() {
     }
@@ -37,6 +38,21 @@ public class UserInfoBean {
         this.mRegistTime = mRegistTime;
         this.mRole = mRole;
     }
+
+
+    public UserInfoBean(int id, String mUserName, String mPassword, String mName, String mEmail, String mPhone, String mRegistTime, int mRole, String mCarId) {
+        this.id = id;
+        this.mUserName = mUserName;
+        this.mPassword = mPassword;
+        this.mName = mName;
+        this.mEmail = mEmail;
+        this.mPhone = mPhone;
+        this.mRegistTime = mRegistTime;
+        this.mRole = mRole;
+        this.mCarId = mCarId;
+    }
+
+
 
     public int getId() {
         return id;
@@ -100,6 +116,14 @@ public class UserInfoBean {
 
     public void setRole(int mRole) {
         this.mRole = mRole;
+    }
+
+    public String getCarId() {
+        return mCarId;
+    }
+
+    public void setCarId(String mCarId) {
+        this.mCarId = mCarId;
     }
 
     @Override

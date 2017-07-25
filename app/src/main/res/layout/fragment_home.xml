@@ -32,10 +32,23 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+    <include layout="@layout/item_user_home_head_2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#a1a1a1" />
+
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </ListView>
+        android:layout_height="wrap_content"
+        android:divider="#d1d1d1"
+        android:dividerHeight="1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"></ListView>
 </LinearLayout>

@@ -39,10 +39,10 @@
         <activity android:name=".ui.activity.StreetLedActivity" />
         <activity android:name=".ui.activity.RedLedManageActivity" />
         <activity
-            android:name=".user.ui.ui.UserHomeActivity"
+            android:name=".user.ui.ui.activity.UserHomeActivity"
             android:label="@string/title_activity_user_home"
             android:theme="@style/AppTheme" />
-        <activity android:name=".user.ui.ui.RecordActivity" />
+        <activity android:name=".user.ui.ui.activity.RecordActivity" />
         <activity
             android:name=".ui.activity.LoginActivity"
             android:label="@string/title_activity_login"
@@ -62,7 +62,9 @@
             android:screenOrientation="landscape" />
         <activity android:name=".ui.activity.YuZhiActivity" />
         <activity android:name=".ui.activity.CarAddActivity" />
-        <activity android:name=".ui.activity.CarRecordActivity"></activity>
+        <activity android:name=".ui.activity.CarRecordActivity" />
+        <activity android:name=".user.ui.ui.activity.CarActivity" />
+        <activity android:name=".user.ui.ui.activity.CarInfoActivity"></activity>
     </application>
 
 </manifest>

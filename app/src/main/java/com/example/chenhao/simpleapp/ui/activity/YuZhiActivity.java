@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.SuperBaseActivity;
-import com.example.chenhao.simpleapp.utils.Utils;
 
 public class YuZhiActivity extends SuperBaseActivity {
     private ListView mListView;
@@ -80,10 +79,12 @@ public class YuZhiActivity extends SuperBaseActivity {
                         Integer max = Integer.valueOf(maxStr);
                         yuZhiSettings(i, min, max);
                         mAdapter.notifyDataSetChanged();
-                        Utils.showToast("设置成功！");
+//                        Utils.showToast("设置成功！");
+                        showMsgDialog("设置成功");
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Utils.showToast("输入有误！");
+                        showMsgDialog("输入有误!");
+//                        Utils.showToast("输入有误！");
                     }
 
 

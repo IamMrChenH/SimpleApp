@@ -44,7 +44,9 @@ public class DBopenHeler extends SQLiteOpenHelper {
                 "email text," +
                 "phone text," +
                 "regist_time text," +
-                "role int )");
+                "role int ," +
+                "carId text)");
+
 //   insert（插入）：db.execSQL("insert into person (A,B)  values(?,?)",new Object[]{values1,values2});
         db.execSQL("create table car(id integer PRIMARY KEY AUTOINCREMENT," +
                 " userId  int," +
@@ -54,8 +56,12 @@ public class DBopenHeler extends SQLiteOpenHelper {
 
         db.execSQL("insert into car(userId,carId,carName,balance)" +
                 "            values(1,1,'1号车',100)");
-
-
+        db.execSQL("insert into car(userId,carId,carName,balance)" +
+                "            values(2,2,'2号车',100)");
+        db.execSQL("insert into car(userId,carId,carName,balance)" +
+                "            values(3,3,'3号车',100)");
+        db.execSQL("insert into car(userId,carId,carName,balance)" +
+                "            values(4,4,'4号车',100)");
         db.execSQL("create table car_record(id integer PRIMARY KEY AUTOINCREMENT," +
                 " carId  int," +
                 "money double," +

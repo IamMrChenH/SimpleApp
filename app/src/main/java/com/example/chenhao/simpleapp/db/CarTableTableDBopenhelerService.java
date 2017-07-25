@@ -85,22 +85,18 @@ public class CarTableTableDBopenhelerService {
         return cars;
     }
 
-    public List<Car> findCar(int id) {
-        List<Car> cars = new ArrayList<>();
+    public Car findCar(int id) {
+        Car car = null;
         SQLiteDatabase db = mHeler.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from car where id=?",
                 new String[]{String.valueOf(id)});
-        while (cursor.moveToNext()) {
-            Car car = getCursorContent(cursor);
-            if (car != null) {
-                cars.add(car);
-                Log.e("db", car.toString());
-            }
+        if (cursor.moveToNext()) {
+            car = getCursorContent(cursor);
         }
         cursor.close();
         db.close();
 
-        return cars;
+        return car;
     }
 
     //OK

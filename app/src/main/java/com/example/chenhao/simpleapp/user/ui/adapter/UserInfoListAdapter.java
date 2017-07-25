@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.chenhao.simpleapp.R;
@@ -30,25 +29,25 @@ public class UserInfoListAdapter extends BaseListGridAdapter<UserInfoItem> {
         }
 
 
-        ImageView img = findView(convertView, R.id.item_line_imager);
-        TextView t1 = findView(convertView, R.id.item_line_topText);
-        TextView t2 = findView(convertView, R.id.item_line_belowText);
+//        ImageView img = findView(convertView, R.id.item_line_imager);
+        TextView t1 = findView(convertView, R.id.item_t1);
+        TextView t2 = findView(convertView, R.id.item_t2);
 
         UserInfoItem item = getItem(position);
         t1.setText(item.mTitle);
         if (item.mType == 0) {
-            img.setVisibility(View.VISIBLE);
-            img.setImageResource(item.mIconId);
+//            img.setVisibility(View.VISIBLE);
+//            img.setImageResource(item.mIconId);
             t2.setVisibility(View.GONE);
         } else if (item.mType == 1) {
             t2.setVisibility(View.VISIBLE);
             t2.setText(isEmpty(item.mContent));
-            img.setVisibility(View.GONE);
+//            img.setVisibility(View.GONE);
         } else if (item.mType == 2) {
             t2.setVisibility(View.VISIBLE);
             t2.setText(isEmpty(item.mContent));
             t2.setTextColor(Color.RED);
-            img.setVisibility(View.GONE);
+//            img.setVisibility(View.GONE);
         }
 
         return convertView;

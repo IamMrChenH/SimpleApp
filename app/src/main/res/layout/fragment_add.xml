@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".user.ui.fragment.AddFragment">
+        tools:context=".user.ui.ui.fragment.AddFragment">
 
 
         <LinearLayout
@@ -28,13 +28,13 @@
                 android:text="充值ID号："
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/item_edit1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:entries="@array/select_car"
                 android:gravity="center"
-                android:hint="请输入充值ID号"
                 android:inputType="number"
                 android:singleLine="true"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />

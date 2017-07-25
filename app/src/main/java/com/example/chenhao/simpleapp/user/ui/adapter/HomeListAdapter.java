@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.chenhao.simpleapp.R;
@@ -39,15 +38,16 @@ public class HomeListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_line_1, null);
-        }
-
-        ImageView itemIcon = (ImageView) convertView.findViewById(R.id.item_line_imager);
-        TextView itemText = (TextView) convertView.findViewById(R.id.item_line_topText);
+        if (convertView == null)
+            convertView = mLayoutInflater.inflate(R.layout.item_line_3, null);
+        TextView t1 = (TextView) convertView.findViewById(R.id.item_t1);
+        TextView t2 = (TextView) convertView.findViewById(R.id.item_t2);
         HomeMenuItem item = getItem(position);
-        itemIcon.setImageResource(item.mIcon);
-        itemText.setText(item.mString);
+        t1.setText(item.getName());
+        t2.setText(item.getContent());
+        t2.setTextColor(item.getContentColor());
+        if (item.getContentSize() != -1)
+            t2.setTextSize(item.getContentSize());
 
         return convertView;
     }

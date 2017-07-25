@@ -73,4 +73,16 @@ public abstract class SuperBaseActivity extends BaseActivity {
 
         view.setAnimation(set);
     }
+
+    public String splitAndString(String[] strings) {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < strings.length; i++) {
+            buffer.append(strings[i]).append(",");
+        }
+
+        return buffer.toString();
+    }
+
+
+
 }

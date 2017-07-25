@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,5 +78,13 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    public void showMsgDialog(String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(msg)
+                .setTitle("温馨提示")
+                .setCancelable(false)
+                .setPositiveButton("确定", null)
+                .show();
 
+    }
 }

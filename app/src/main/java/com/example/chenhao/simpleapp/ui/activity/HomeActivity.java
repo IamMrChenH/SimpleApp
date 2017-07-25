@@ -144,7 +144,8 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
         } else if (id == R.id.nav_car_add) {
             startActivity(new Intent(this, CarAddActivity.class));
         } else if (id == R.id.nav_version) {
-            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+//            Utils.showToast("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
+            showMsgDialog("版本号V1.0  \nMr.Chen \n福建船政交通职业学院");
         } else if (id == R.id.nav_exit) {
 
             getSharedPreferences("login", MODE_PRIVATE).edit().clear().commit();

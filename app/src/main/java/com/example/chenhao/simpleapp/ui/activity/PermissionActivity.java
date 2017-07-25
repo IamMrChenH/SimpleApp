@@ -13,7 +13,6 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.SuperBaseActivity;
 import com.example.chenhao.simpleapp.base.UserInfoBean;
 import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
-import com.example.chenhao.simpleapp.utils.Utils;
 
 import java.util.List;
 
@@ -56,9 +55,11 @@ public class PermissionActivity extends SuperBaseActivity {
                 int tag = (int) view.getTag();
                 Log.e("233", "onClick: " + tag);
                 if (!b) {
-                    Utils.showToast("修改失败！");
+//                    Utils.showToast("修改失败！");
+                    showMsgDialog("修改失败！");
                 } else {
-                    Utils.showToast("修改成功！");
+//                    Utils.showToast("修改成功！");
+                    showMsgDialog("修改成功！");
                 }
                 updateListView();
             }

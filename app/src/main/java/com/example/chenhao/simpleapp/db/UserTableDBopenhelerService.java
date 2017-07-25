@@ -137,6 +137,7 @@ public class UserTableDBopenhelerService {
         return infoBean;
     }
 
+
     public List<UserInfoBean> findAllUserInfoBean() {
         List<UserInfoBean> userInfoBeanList = new ArrayList<>();
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -205,7 +206,14 @@ public class UserTableDBopenhelerService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new UserInfoBean(id, user_name, password, name, email, phone, regist_time, role);
+        String carId = null;
+        try {
+            carId = cursor.getString(cursor.getColumnIndex("carId"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            carId = null;
+        }
+        return new UserInfoBean(id, user_name, password, name, email, phone, regist_time, role, carId);
     }
 
     /****************更新 -- 改  update********************************/
@@ -218,9 +226,21 @@ public class UserTableDBopenhelerService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }finally {
+        } finally {
             db.close();
         }
     }
 
+    public boolean updateCarId(int id, String carId) {
+        SQLiteDatabase db = mHeler.getWritableDatabase();
+        try {
+            db.execSQL("update  app_user set carId=? where id=? ", new Object[]{carId, id});
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.close();
+        }
+    }
 }

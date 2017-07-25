@@ -26,7 +26,7 @@ import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.SuperBaseActivity;
 import com.example.chenhao.simpleapp.base.UserInfoBean;
 import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
-import com.example.chenhao.simpleapp.user.ui.ui.UserHomeActivity;
+import com.example.chenhao.simpleapp.user.ui.ui.activity.UserHomeActivity;
 import com.example.chenhao.simpleapp.utils.Utils;
 
 /**
@@ -149,12 +149,14 @@ public class LoginActivity extends SuperBaseActivity {
 
 
         if (instance.isUserName(email)) {
-            Utils.showToast("用户名不存在！");
+//            Utils.showToast("用户名不存在！");
+            showMsgDialog("用户名不存在！");
             return;
         }
         UserInfoBean userInfoBean = instance.findUserInfoBean(email, password);
         if (userInfoBean == null) {
-            Utils.showToast("密码错误！");
+//            Utils.showToast("密码错误！");
+            showMsgDialog("密码错误！");
             return;
         }
 
@@ -209,6 +211,7 @@ public class LoginActivity extends SuperBaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_regist) {
             Utils.showToast("注册");
+
             startActivity(new Intent(this, RegisterActivity.class));
             return true;
         }
@@ -254,15 +257,18 @@ public class LoginActivity extends SuperBaseActivity {
                 case 0:
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     Utils.showToast("欢迎您登陆 管理员!");
+//                    showMsgDialog("欢迎您登陆 管理员!");
                     finish();
                     break;
                 case 1:
                     startActivity(new Intent(LoginActivity.this, UserHomeActivity.class));
                     Utils.showToast(mUserInfoBean.getName() + "欢迎您登陆！");
+//                    showMsgDialog(mUserInfoBean.getName() + "欢迎您登陆！");
                     finish();
                     break;
                 case 2:
                     Utils.showToast("此用户暂时无权限登陆！");
+//                    showMsgDialog("此用户暂时无权限登陆！");
                     break;
                 default:
                     break;

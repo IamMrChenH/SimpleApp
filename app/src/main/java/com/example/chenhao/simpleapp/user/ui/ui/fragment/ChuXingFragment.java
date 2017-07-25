@@ -1,4 +1,4 @@
-package com.example.chenhao.simpleapp.user.ui.fragment;
+package com.example.chenhao.simpleapp.user.ui.ui.fragment;
 
 import android.widget.TextView;
 

@@ -6,4 +6,11 @@
         <item>红绿灯管理</item>
     </array>
 
+
+    <array name="select_car">
+        <item>1号小车</item>
+        <item>2号小车</item>
+        <item>3号小车</item>
+        <item>4号小车</item>
+    </array>
 </resources>
