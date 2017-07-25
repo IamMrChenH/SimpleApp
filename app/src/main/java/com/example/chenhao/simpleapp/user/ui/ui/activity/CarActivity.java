@@ -3,6 +3,7 @@ package com.example.chenhao.simpleapp.user.ui.ui.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -64,7 +65,7 @@ public class CarActivity extends SuperBaseActivity {
         UserInfoBean userInfoBean = instance.findUserInfoBean(BaseData.mUserInfoBean.getUserName(), BaseData.mUserInfoBean.getPassword());
         instanceCar = CarTableTableDBopenhelerService.getInstance(this);
         String carId = userInfoBean.getCarId();
-
+        Log.e("233", "initDatas: " + carId);
         try {
             if (carId != null) {
                 split = carId.split(",");
@@ -94,6 +95,7 @@ public class CarActivity extends SuperBaseActivity {
         ListView listView = new ListView(this);
         listView.setAdapter(new CarActivityListViewAdapter2(instanceCar.findAllCar()));
         dialog = new Dialog(this);
+        dialog.setTitle("小车选择");
         dialog.setContentView(listView);
         dialog.show();
 
@@ -207,10 +209,20 @@ public class CarActivity extends SuperBaseActivity {
             t4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    boolean isAdd = true;
                     String[] temp = new String[split.length + 1];
                     int num = 0;
                     for (int j = 0; j < split.length; j++) {
                         temp[num++] = split[j];
+                        if ((item.getId() + "").equals(split[j])) {
+                            isAdd = false;
+                        }
+                    }
+
+
+                    if (!isAdd) {
+                        showMsgDialog("不能添加重复的小车！");
+                        return;
                     }
                     temp[num] = item.getId() + "";
 
