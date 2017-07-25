@@ -66,7 +66,7 @@ public class UserHomeActivity extends BaseActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
         View headerView = navigationView.getHeaderView(0);
         mHeadImageView = (ImageView) headerView.findViewById(R.id.imageView);
-        mNameText = (TextView) headerView.findViewById(R.id.name);
+        mNameText = (TextView) headerView.findViewById(R.id.item_name);
         mEmailText = (TextView) headerView.findViewById(R.id.email);
         mNameText.setText(mUserInfoBean.getName());
         mEmailText.setText(mUserInfoBean.getEmail());

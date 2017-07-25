@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/mTitle"
-        android:layout_width="match_parent"
+        android:layout_width="800dp"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
@@ -24,10 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:ems="15"
         android:gravity="center"
         android:hint="请输入充值金额"
         android:inputType="number"
+        android:padding="20dp"
         android:singleLine="true" />
 
 

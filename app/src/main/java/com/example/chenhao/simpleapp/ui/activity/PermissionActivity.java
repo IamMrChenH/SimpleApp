@@ -44,7 +44,7 @@ public class PermissionActivity extends SuperBaseActivity {
     private void initViews() {
         mListView = findView(R.id.mListView);
         mListView.setAdapter(mAdapter = new PermissionActivityListViewAdapter());
-        mListView.addHeaderView(getLayoutInflater().inflate(R.layout.item_permisson_head, null));
+//        mListView.addHeaderView(getLayoutInflater().inflate(R.layout.item_permisson_head, null));
     }
 
     public void updateRole(final int id, View view) {
@@ -94,7 +94,9 @@ public class PermissionActivity extends SuperBaseActivity {
             if (convertView == null)
                 convertView = getLayoutInflater().inflate(R.layout.item_permisson, null);
             UserInfoBean item = getItem(position);
-            ((TextView) convertView.findViewById(R.id.name)).setText(item.getName());
+            TextView name = (TextView) convertView.findViewById(R.id.item_name);
+            name.setText(item.getName());
+
             RadioButton radio1 = (RadioButton) convertView.findViewById(R.id.radio1);
             RadioButton radio2 = (RadioButton) convertView.findViewById(R.id.radio2);
             RadioButton radio3 = (RadioButton) convertView.findViewById(R.id.radio3);

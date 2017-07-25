@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.chenhao.simpleapp.R;
+import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.SuperBaseActivity;
 import com.example.chenhao.simpleapp.bean.Car;
 import com.example.chenhao.simpleapp.bean.CarRecord;
@@ -74,7 +75,7 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
     }
 
     public void showAddDialog(final Car car) {
-        final Dialog dialog = new Dialog(this, android.R.style.Theme_Material_Light_Dialog_NoActionBar);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar);
         dialog.setContentView(R.layout.dialog_car_add);
         TextView title = (TextView) dialog.findViewById(R.id.mTitle);
         final TextView editText = (TextView) dialog.findViewById(R.id.mEdit);
@@ -87,6 +88,14 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
                 String s = editText.getText().toString();
                 try {
                     Integer integer = Integer.valueOf(s);
+                    if (car.getBalance() > BaseData.mCarMaxMoney) {
+                        showMsgDialog("账户余额是否超过设置的阈值,无法充值！");
+                        return;
+                    } else if (car.getBalance() + integer > BaseData.mCarMaxMoney) {
+                        showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - car.getBalance()) + "元");
+                        return;
+                    }
+
                     if (instance.updateBalance(car.getId(), car.getBalance() + integer)) {
                         instanceRecord.insert(new CarRecord(car.getId(),
                                 integer,

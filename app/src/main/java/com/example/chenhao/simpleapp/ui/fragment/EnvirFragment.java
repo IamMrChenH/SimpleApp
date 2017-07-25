@@ -103,7 +103,7 @@ public class EnvirFragment extends SuperBaseActivity implements Runnable, Adapte
 
         @Override
         public int getCount() {
-            return BaseData.mSenseName.length;
+            return BaseData.mSenseName.length - 1;
         }
 
         @Override

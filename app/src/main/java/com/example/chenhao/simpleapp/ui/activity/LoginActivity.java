@@ -65,8 +65,8 @@ public class LoginActivity extends SuperBaseActivity {
         instance = UserTableDBopenhelerService.getInstance(this);
         //      'admin','admin','管理员','admin@xx.com','1008611','2017-7-17-21:55',0)");
 
-        instance.insert(new UserInfoBean("admin", "admin", "管理员", "admin@xx.com",
-                "1008611", "2017-7-17-21:55", 0));
+        instance.insert(new UserInfoBean("admin", "admin", "zzx", "admin@xx.com",
+                "17720798392", "2017-7-17-21:55", 0));
         mSharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
 //        CarTableTableDBopenhelerService.getInstance(this).insert(new Car(1, 1, "2号小车", 1000));

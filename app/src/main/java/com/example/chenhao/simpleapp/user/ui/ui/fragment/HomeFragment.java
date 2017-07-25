@@ -2,6 +2,7 @@ package com.example.chenhao.simpleapp.user.ui.ui.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 public class HomeFragment extends BaseFragment implements Runnable, View.OnClickListener {
     private CarTableTableDBopenhelerService instance;
     private Car car;
+    private String[] split;
 
     @Override
     public int getLayoutId() {
@@ -67,13 +69,18 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
     private void initData() {
         instance = CarTableTableDBopenhelerService.getInstance(getActivity());
         car = instance.findCar(2);
+        String data = "未绑定小车";
+        if (!TextUtils.isEmpty(mUserInfoBean.getCarId())) {
+            split = mUserInfoBean.getCarId().split(",");
+            data = split[0] + "号小车";
+        }
 
         mItems = new ArrayList<>();
         mItems.add(new HomeMenuItem("昵称", mUserInfoBean.getName(), Color.parseColor("#d1d1d1")));
-        mItems.add(new HomeMenuItem("电话", "15160594831", Color.BLACK));
+        mItems.add(new HomeMenuItem("电话", mUserInfoBean.getPhone(), Color.BLACK));
         mItems.add(new HomeMenuItem("类型", "小型车", Color.parseColor("#d1d1d1")));
         mItems.add(new HomeMenuItem("账户类型", "现金", Color.BLACK));
-        mItems.add(new HomeMenuItem("默认小车", "2号车", Color.BLACK));
+        mItems.add(new HomeMenuItem("小车", data, Color.BLACK));
 
         mHomeListAdapter = new HomeListAdapter(getActivity(), mItems);
     }

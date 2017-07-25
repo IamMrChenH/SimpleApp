@@ -36,7 +36,7 @@ public class RecordActivity extends BaseActivity {
     }
 
     private void initDatas() {
-        format = new SimpleDateFormat("yyyy:MM:dd hh:mm");
+        format = new SimpleDateFormat("yy-MM-dd HH:mm ");
         instance = DBopenhelerService.getInstance(this);
         mRecord = instance.findRecord();
     }

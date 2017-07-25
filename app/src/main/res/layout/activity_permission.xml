@@ -9,11 +9,15 @@
 
     <include layout="@layout/layout_toolbar_title" />
 
+    <include
+        layout="@layout/item_permisson_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
     <ListView
         android:id="@+id/mListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:background="@drawable/background_black_line"
         android:divider="#000"
         android:dividerHeight="1dp">

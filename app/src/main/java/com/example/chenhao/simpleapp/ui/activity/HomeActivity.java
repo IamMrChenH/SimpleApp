@@ -84,7 +84,7 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
         //以上 自动生成。我不管
         View view = null;
         navigationView.addHeaderView(view = getLayoutInflater().inflate(R.layout.nav_header_user_home, null));
-        mNameText = (TextView) view.findViewById(R.id.name);
+        mNameText = (TextView) view.findViewById(R.id.item_name);
         mEmailText = (TextView) view.findViewById(R.id.email);
 
         mNameText.setText(BaseData.mUserInfoBean.getName());

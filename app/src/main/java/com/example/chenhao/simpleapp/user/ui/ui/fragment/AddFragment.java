@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.BaseFragment;
+import com.example.chenhao.simpleapp.bean.Car;
 import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.DBopenhelerService;
 import com.example.chenhao.simpleapp.user.ui.ui.activity.RecordActivity;
@@ -99,16 +100,19 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     public void addMoney(float mAddTempMoney) {
         int selectedItemPosition = mItemSpinner1.getSelectedItemPosition();
         try {
+            Car car = instanceCar.findCar(selectedItemPosition + 1);
+            instanceCar.findCar(selectedItemPosition + 1);
 
-            int temp = BaseData.mCarMoney[selectedItemPosition];
-            if (temp > BaseData.mCarMaxMoney) {
+            double balance = car.getBalance();
+//            int temp = BaseData.mCarMoney[selectedItemPosition];
+            if (balance > BaseData.mCarMaxMoney) {
                 showMsgDialog("账户余额是否超过设置的阈值,无法充值！");
                 return;
-            } else if (temp + mAddTempMoney > BaseData.mCarMaxMoney) {
-                showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - temp) + "元");
+            } else if (balance + mAddTempMoney > BaseData.mCarMaxMoney) {
+                showMsgDialog("充值过多，您当前最多充值：" + (BaseData.mCarMaxMoney - balance) + "元");
                 return;
             }
-            BaseData.mCarMoney[selectedItemPosition] = (int) (temp + mAddTempMoney);
+            BaseData.mCarMoney[selectedItemPosition] = (int) (balance + mAddTempMoney);
             showMsgDialog("充值成功!");
             StringBuffer buffer = new StringBuffer();
             buffer.append(selectedItemPosition).append(",")
@@ -117,7 +121,7 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
 
             instance.insertRecord(buffer.toString());
             List<String> record = instance.findRecord();
-            double balance = instanceCar.findCar(selectedItemPosition + 1).getBalance();
+
             instanceCar.updateBalance(selectedItemPosition + 1, balance + mAddTempMoney);
 
             for (int i = 0; i < record.size(); i++) {

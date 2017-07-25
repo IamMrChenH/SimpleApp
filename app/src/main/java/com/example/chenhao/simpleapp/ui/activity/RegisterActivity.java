@@ -34,7 +34,7 @@ public class RegisterActivity extends SuperBaseActivity {
 
     private void initViews() {
         mUserNameText = findView(R.id.user_name);
-        mNameText = findView(R.id.name);
+        mNameText = findView(R.id.item_name);
         mPassText1 = findView(R.id.password1);
         mPassText2 = findView(R.id.password2);
         mPhoneTextx = findView(R.id.phone);

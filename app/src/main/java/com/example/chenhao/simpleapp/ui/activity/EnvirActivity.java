@@ -46,7 +46,7 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
 
     private void initDatas() {
         mAchartLineViews = new ArrayList<>();
-        for (int i = 0; i < BaseData.mSenseName.length; i++) {
+        for (int i = 0; i < BaseData.mSenseName.length-1; i++) {
             mAchartLineViews.add(new AchartLineView(this, BaseData.mSenseName[i]));
         }
 
@@ -55,7 +55,7 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
     private void initViews() {
         mTitleText = findView(R.id.mTitle);
 
-        for (int i = 0; i < BaseData.mSenseName.length; i++) {
+        for (int i = 0; i < BaseData.mSenseName.length-1; i++) {
             mRadioBtns[i] = findView(mRadioBtnId[i]);
             mRadioBtns[i].setTag(i);
             mRadioBtns[i].setOnClickListener(new View.OnClickListener() {
@@ -94,7 +94,7 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < mAchartLineViews.size(); i++) {
+        for (int i = 0; i < mAchartLineViews.size()-1; i++) {
             mAchartLineViews.get(i).update(BaseData.mSenseData[i]).setMaxAndMinValues(BaseData.mSenseMaxData[i], BaseData.mSenseMinData[i]);
         }
         mBaseHandler.postDelayed(this, UpdateTime);
@@ -120,7 +120,7 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
 
         @Override
         public int getCount() {
-            return mAchartLineViews.size();
+            return mAchartLineViews.size()-1;
         }
 
         @Override
