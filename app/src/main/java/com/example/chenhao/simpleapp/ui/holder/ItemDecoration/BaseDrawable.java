@@ -10,13 +10,23 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 
+/**
+ * The type Base drawable.
+ *  现已废弃
+ */
+
 public class BaseDrawable extends Drawable {
     private Paint mPaint;  
     private Bitmap mBitmap;
   
     private RectF rectF;
-  
-    public BaseDrawable(Bitmap bitmap) {  
+
+    /**
+     * Instantiates a new Base drawable.
+     *
+     * @param bitmap the bitmap
+     */
+    public BaseDrawable(Bitmap bitmap) {
         mBitmap = bitmap;  
         BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP,
                 Shader.TileMode.CLAMP);  

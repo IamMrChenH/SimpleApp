@@ -16,6 +16,11 @@ import com.example.chenhao.simpleapp.utils.Utils;
 
 import java.util.Date;
 
+/**
+ * The type Street led activity.
+ * 路灯管理界面
+ *
+ */
 public class StreetLedActivity extends SuperBaseActivity implements Runnable {
     private TextView mTitleText;
     private ImageView mLed;
@@ -77,6 +82,9 @@ public class StreetLedActivity extends SuperBaseActivity implements Runnable {
     }
 
 
+    /**
+     * Auto led.
+     */
     public void autoLed() {
         if (!mAutoMode) return;
 

@@ -9,12 +9,34 @@ import com.example.chenhao.simpleapp.utils.Utils;
 
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Chu xing fragment.
+ * 用户的 我的出行界面
+ */
 public class ChuXingFragment extends BaseFragment implements Runnable {
+    /**
+     * The M item text 1.
+     */
     TextView mItemText1;
+    /**
+     * The M item text 2.
+     */
     TextView mItemText2;
+    /**
+     * The M item text 3.
+     */
     TextView mItemText3;
+    /**
+     * The M item text 4.
+     */
     TextView mItemText4;
+    /**
+     * The M item text 5.
+     */
     TextView mItemText5;
+    /**
+     * The M item text 6.
+     */
     TextView mItemText6;
 
     @Override

@@ -29,12 +29,11 @@ import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
 import com.example.chenhao.simpleapp.user.ui.ui.activity.UserHomeActivity;
 import com.example.chenhao.simpleapp.utils.Utils;
 
-/**
- * 都是自动生成的 滑稽
- */
 
 /**
  * A login screen that offers login via email/password.
+ *
+ *登录界面
  */
 public class LoginActivity extends SuperBaseActivity {
 
@@ -224,11 +223,19 @@ public class LoginActivity extends SuperBaseActivity {
     }
 
 
+    /**
+     * The type User login task.
+     */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private UserInfoBean mUserInfoBean;
 
 
+        /**
+         * Instantiates a new User login task.
+         *
+         * @param bean the bean
+         */
         UserLoginTask(UserInfoBean bean) {
             mUserInfoBean = bean;
         }
@@ -283,6 +290,9 @@ public class LoginActivity extends SuperBaseActivity {
         }
 
 
+        /**
+         * Re login.
+         */
         public void reLogin() {
             mSharedPreferences.edit()
                     .putBoolean("re", mRememberPassWord.isChecked())

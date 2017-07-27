@@ -24,6 +24,10 @@ import com.example.chenhao.simpleapp.user.ui.ui.activity.RecordActivity;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+/**
+ * The type Add fragment.
+ * 用户的充值界面
+ */
 public class AddFragment extends BaseFragment implements AdapterView.OnItemClickListener {
     private GridView mGridView;
     private AddFragmentGridViewAdapter mAdapter;
@@ -100,6 +104,11 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     }
 
 
+    /**
+     * Add money.
+     *
+     * @param mAddTempMoney the m add temp money
+     */
     public void addMoney(float mAddTempMoney) {
         int selectedItemPosition = mItemSpinner1.getSelectedItemPosition();
         try {
@@ -142,7 +151,9 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
         }
     }
 
-    /****************************************************************/
+    /**
+     * The type Add fragment grid view adapter.
+     */
     class AddFragmentGridViewAdapter extends BaseAdapter {
 
         @Override

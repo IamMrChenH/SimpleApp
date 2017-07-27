@@ -19,10 +19,22 @@ import com.example.chenhao.simpleapp.ui.activity.EnvirActivity;
 
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Envir fragment.
+ *
+ * 原来是一个Fragment 现在改成了Activity
+ * 用以GridView的方式显示环境等状态 点击进入折线图等功能
+ */
 public class EnvirFragment extends SuperBaseActivity implements Runnable, AdapterView.OnItemClickListener {
     private static final String TAG = "EnvirFragment";
 
+    /**
+     * The M grid view.
+     */
     GridView mGridView;
+    /**
+     * The M adapter.
+     */
     EnvirGridViewAdapter mAdapter;
 
     @Override
@@ -97,8 +109,9 @@ public class EnvirFragment extends SuperBaseActivity implements Runnable, Adapte
         return super.onOptionsItemSelected(item);
     }
 
-    /****************************************/
-
+    /**
+     * The type Envir grid view adapter.
+     */
     class EnvirGridViewAdapter extends BaseAdapter {
 
         @Override

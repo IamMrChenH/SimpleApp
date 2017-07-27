@@ -32,11 +32,18 @@ import static com.example.chenhao.simpleapp.app.BaseData.mTrafficData;
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Home fragment.
+ * 用户的主Fragment
+ */
 public class HomeFragment extends BaseFragment implements Runnable, View.OnClickListener {
     private CarTableTableDBopenhelerService instance;
     private Car car;
     private String[] split;
     private Dialog dialog;
+    /**
+     * The M preferences.
+     */
     SharedPreferences mPreferences;
 
     @Override
@@ -47,9 +54,17 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
 
     private volatile static boolean isShowDialog = true;
 
+    /**
+     * Instantiates a new Home fragment.
+     */
     public HomeFragment() {
     }
 
+    /**
+     * New instance home fragment.
+     *
+     * @return the home fragment
+     */
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
@@ -148,6 +163,9 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
         }
     }
 
+    /**
+     * The Pm 2 5.
+     */
     String pm2_5 = "";
 
     @Override
@@ -184,6 +202,9 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
     }
 
 
+    /**
+     * Show dialog.
+     */
     public void showDialog() {
         dialog = new Dialog(getActivity());
         dialog.setTitle("小车选择");
@@ -208,6 +229,9 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
 
     }
 
+    /**
+     * Dissmiss dialog.
+     */
     public void dissmissDialog() {
         if (dialog.isShowing())
             dialog.dismiss();
@@ -216,10 +240,17 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
     }
 
 
-    /*********************************************************/
+    /**
+     * The type Car activity list view adapter 2.
+     */
     class CarActivityListViewAdapter2 extends BaseAdapter {
         private List<Car> mCars;
 
+        /**
+         * Instantiates a new Car activity list view adapter 2.
+         *
+         * @param mCars the m cars
+         */
         public CarActivityListViewAdapter2(List<Car> mCars) {
             this.mCars = mCars;
         }

@@ -5,6 +5,10 @@ import android.os.Bundle;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.SuperBaseActivity;
 
+/**
+ * The type Version activity.
+ * 版本界面
+ */
 public class VersionActivity extends SuperBaseActivity {
 
     @Override

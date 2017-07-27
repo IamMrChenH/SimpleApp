@@ -8,7 +8,10 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.bean.TrafficItem;
 
 
-
+/**
+ * The type Tra one view holder.
+ * RecycleView的Item显示不同的操作
+ */
 public class TraOneViewHolder extends BaseViewHolder {
 
 
@@ -16,6 +19,11 @@ public class TraOneViewHolder extends BaseViewHolder {
     private TextView topText1, topText2, belowText1, belowText2;
     private View back;
 
+    /**
+     * Instantiates a new Tra one view holder.
+     *
+     * @param itemView the item view
+     */
     public TraOneViewHolder(View itemView) {
         super(itemView);
         mImager1 = finView(R.id.item_line_imager);

@@ -16,10 +16,20 @@ import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
 
 import java.util.List;
 
+/**
+ * The type Permission activity.
+ * 权限管理界面
+ */
 public class PermissionActivity extends SuperBaseActivity {
     private ListView mListView;
     private UserTableDBopenhelerService instance;
+    /**
+     * The M info been.
+     */
     List<UserInfoBean> mInfoBeen;
+    /**
+     * The M adapter.
+     */
     PermissionActivityListViewAdapter mAdapter;
 
     @Override
@@ -36,6 +46,9 @@ public class PermissionActivity extends SuperBaseActivity {
         mInfoBeen = instance.findAllUserInfoBean();
     }
 
+    /**
+     * Update list view.
+     */
     public void updateListView() {
         mInfoBeen = instance.findAllUserInfoBean();
         mAdapter.notifyDataSetChanged();
@@ -47,6 +60,12 @@ public class PermissionActivity extends SuperBaseActivity {
 //        mListView.addHeaderView(getLayoutInflater().inflate(R.layout.item_permisson_head, null));
     }
 
+    /**
+     * Update role.
+     *
+     * @param id   the id
+     * @param view the view
+     */
     public void updateRole(final int id, View view) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +91,9 @@ public class PermissionActivity extends SuperBaseActivity {
         return "权限管理";
     }
 
+    /**
+     * The type Permission activity list view adapter.
+     */
     class PermissionActivityListViewAdapter extends BaseAdapter {
 
         @Override

@@ -21,16 +21,35 @@ import java.util.List;
 
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Envir activity.
+ * 查看环境图表界面 的一个界面
+ */
 public class EnvirActivity extends SuperBaseActivity implements Runnable {
 
+    /**
+     * The M achart line views.
+     */
     public List<AchartLineView> mAchartLineViews;
     private TextView mTitleText;
 
 
+    /**
+     * The M view pager.
+     */
     public ViewPager mViewPager;
+    /**
+     * The M adapter.
+     */
     EnvirActivityViewPagerAdapter mAdapter;
 
+    /**
+     * The M radio btn id.
+     */
     public int[] mRadioBtnId = {R.id.radio1, R.id.radio2, R.id.radio3, R.id.radio4, R.id.radio5, R.id.radio6, R.id.radio7};
+    /**
+     * The M radio btns.
+     */
     public RadioButton[] mRadioBtns = new RadioButton[mRadioBtnId.length];
 
     @Override
@@ -114,7 +133,9 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
         return " ";
     }
 
-    /******************************************/
+    /**
+     * The type Envir activity view pager adapter.
+     */
     class EnvirActivityViewPagerAdapter extends PagerAdapter {
 
 

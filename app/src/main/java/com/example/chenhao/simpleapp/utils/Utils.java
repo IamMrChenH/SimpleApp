@@ -15,12 +15,20 @@ import java.util.Map;
 
 /**
  * Created by lenovo on 2017/5/31.
+ * 简单工具类 集成一些工具类
  */
-
 public class Utils {
 
+    /**
+     * The M toast.
+     */
     static Toast mToast;
 
+    /**
+     * Show toast.
+     *
+     * @param msg the msg
+     */
     public static void showToast(String msg) {
         try {
             if (mToast != null)
@@ -32,12 +40,26 @@ public class Utils {
         }
     }
 
+    /**
+     * Add map.
+     *
+     * @param o the o
+     * @return the map
+     */
     public static Map<String, Object> add(Object o) {
         Map<String, Object> map = new HashMap<>();
         map.put("text", o);
         return map;
     }
 
+    /**
+     * Add map.
+     *
+     * @param text  the text
+     * @param lv    the lv
+     * @param money the money
+     * @return the map
+     */
     public static Map<String, Object> add(Object text, Object lv, Object money) {
         Map<String, Object> map = new HashMap<>();
         map.put("text", text);
@@ -46,6 +68,14 @@ public class Utils {
         return map;
     }
 
+    /**
+     * Show notiftion.
+     *
+     * @param context the context
+     * @param title   the title
+     * @param msg     the msg
+     * @param id      the id
+     */
     public static void showNotiftion(Context context, String title, String msg, int id) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
@@ -62,6 +92,12 @@ public class Utils {
 
     }
 
+    /**
+     * Clear notiftion.
+     *
+     * @param context the context
+     * @param id      the id
+     */
     public static void clearNotiftion(Context context, int id) {
         try {
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

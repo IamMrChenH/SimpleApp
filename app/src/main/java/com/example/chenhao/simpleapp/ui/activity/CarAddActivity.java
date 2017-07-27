@@ -23,9 +23,16 @@ import java.util.List;
 
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 
+/**
+ * The type Car add activity.
+ * 管理员的小车充值 界面
+ */
 public class CarAddActivity extends SuperBaseActivity implements Runnable {
     private ListView mListView;
     private CarTableTableDBopenhelerService instance;
+    /**
+     * The M adapter.
+     */
     CarAddActivityListViewAdapter mAdapter;
     private List<Car> allCar;
     private CarRecordTableTableDBopenhelerService instanceRecord;
@@ -58,6 +65,9 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
         });
     }
 
+    /**
+     * Update data.
+     */
     public void updateData() {
         allCar = instance.findAllCar();
         instanceRecord = CarRecordTableTableDBopenhelerService.getInstance(this);
@@ -74,6 +84,11 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
         }
     }
 
+    /**
+     * Show add dialog.
+     *
+     * @param car the car
+     */
     public void showAddDialog(final Car car) {
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar);
         dialog.setContentView(R.layout.dialog_car_add);
@@ -136,6 +151,9 @@ public class CarAddActivity extends SuperBaseActivity implements Runnable {
         }
     }
 
+    /**
+     * The type Car add activity list view adapter.
+     */
     class CarAddActivityListViewAdapter extends BaseAdapter {
 
         @Override

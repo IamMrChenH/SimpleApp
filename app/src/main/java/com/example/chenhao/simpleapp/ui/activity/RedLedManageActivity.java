@@ -16,13 +16,29 @@ import com.example.chenhao.simpleapp.base.BaseActivity;
 
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Red led manage activity.
+ * 红绿灯管理界面
+ */
 public class RedLedManageActivity extends BaseActivity implements Runnable {
     private TextView mTitleText;
     private ListView mListView;
+    /**
+     * The M adapter.
+     */
     RedLedManageListViewAdapter mAdapter;
+    /**
+     * The M old times.
+     */
     public int[] mOldTimes = {20, 10, 10, 10, 10};
+    /**
+     * The M cur times.
+     */
     public int[] mCurTimes = {20, 10, 10, 10, 10};
 
+    /**
+     * The M colors.
+     */
     public int[] mColors = {Color.parseColor("#6ab82e"), Color.parseColor("#ece93a"),
             Color.parseColor("#f49b25"), Color.parseColor("#e33532"),
             Color.parseColor("#b01e23")};
@@ -91,7 +107,9 @@ public class RedLedManageActivity extends BaseActivity implements Runnable {
         }
     }
 
-    /*********************************************************/
+    /**
+     * The type Red led manage list view adapter.
+     */
     class RedLedManageListViewAdapter extends BaseAdapter {
 
         @Override

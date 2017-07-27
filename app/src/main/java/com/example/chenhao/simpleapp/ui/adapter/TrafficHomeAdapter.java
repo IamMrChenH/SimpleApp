@@ -18,19 +18,36 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17-3-20.
+ * RecyclerView的一个适配器 可以制作一个对于ListView来说不规则的一个界面
  */
-
 public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
+    /**
+     * The interface On item click listener.
+     */
     public interface OnItemClickListener {
 
+        /**
+         * On item click.
+         *
+         * @param view     the view
+         * @param position the position
+         */
         public void onItemClick(View view, int position);
     }
 
 
+    /**
+     * The M item click listener.
+     */
     public OnItemClickListener mItemClickListener;
 
 
+    /**
+     * Sets on item click listener.
+     *
+     * @param mItemClickListener the m item click listener
+     */
     public void setOnItemClickListener(OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
@@ -39,6 +56,12 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<TrafficItem> mTrafficItems;
 
 
+    /**
+     * Instantiates a new Traffic home adapter.
+     *
+     * @param context      the context
+     * @param TrafficItems the traffic items
+     */
     public TrafficHomeAdapter(Context context, List<TrafficItem> TrafficItems) {
         mInflater = LayoutInflater.from(context);
         mTrafficItems = TrafficItems;
@@ -75,6 +98,12 @@ public class TrafficHomeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
 
+    /**
+     * Gets item.
+     *
+     * @param position the position
+     * @return the item
+     */
     public TrafficItem getItem(int position) {
         return mTrafficItems.get(position);
     }

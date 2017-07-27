@@ -15,10 +15,20 @@ import com.example.chenhao.simpleapp.db.CarRecordTableTableDBopenhelerService;
 
 import java.util.List;
 
+/**
+ * The type Car record activity.
+ * 这是管理员的小车充值记录界面
+ */
 public class CarRecordActivity extends SuperBaseActivity {
     private CarRecordTableTableDBopenhelerService instance;
+    /**
+     * The Car record.
+     */
     List<CarRecord> carRecord;
     private ListView mListView;
+    /**
+     * The M adapter.
+     */
     CarRecordActivityListViewAdapter mAdapter;
     private int Key;
 
@@ -52,6 +62,9 @@ public class CarRecordActivity extends SuperBaseActivity {
     }
 
 
+    /**
+     * The type Car record activity list view adapter.
+     */
     class CarRecordActivityListViewAdapter extends BaseAdapter {
 
         @Override

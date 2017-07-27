@@ -18,12 +18,19 @@ import com.example.chenhao.simpleapp.db.DBopenhelerService;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+/**
+ * The type Record activity.
+ * 用户的小车历史界面
+ */
 public class RecordActivity extends BaseActivity {
     private TextView mTitleText;
     private DBopenhelerService instance;
     private SimpleDateFormat format;
 
     private ListView mListView;
+    /**
+     * The M adapter.
+     */
     RecordActivityListViewAdapter mAdapter;
     private CarRecordTableTableDBopenhelerService instanceCarRecord;
     private List<CarRecord> allCar;
@@ -76,6 +83,9 @@ public class RecordActivity extends BaseActivity {
     }
 
 
+    /**
+     * The type Record activity list view adapter.
+     */
     class RecordActivityListViewAdapter extends BaseAdapter {
 
         @Override

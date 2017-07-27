@@ -12,10 +12,26 @@ import com.example.chenhao.simpleapp.user.bean.HomeMenuItem;
 
 import java.util.List;
 
+/**
+ * The type Home list adapter.
+ * 用户主界面的ListView 的适配器
+ */
 public class HomeListAdapter extends BaseAdapter {
+    /**
+     * The Menu items.
+     */
     List<HomeMenuItem> menuItems;
+    /**
+     * The M layout inflater.
+     */
     LayoutInflater mLayoutInflater;
 
+    /**
+     * Instantiates a new Home list adapter.
+     *
+     * @param context the context
+     * @param items   the items
+     */
     public HomeListAdapter(Context context, List<HomeMenuItem> items) {
         mLayoutInflater = LayoutInflater.from(context);
         menuItems = items;

@@ -24,6 +24,10 @@ import com.example.chenhao.simpleapp.utils.Utils;
 
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 
+/**
+ * The type User home activity.
+ * 用户登录之后的主界面
+ */
 public class UserHomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,6 +77,9 @@ public class UserHomeActivity extends BaseActivity
 
     }
 
+    /**
+     * The Is exit.
+     */
     boolean isExit = false;
 
     @Override
@@ -113,6 +120,7 @@ public class UserHomeActivity extends BaseActivity
      */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
+
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         FragmentTransaction bt = getSupportFragmentManager().beginTransaction();

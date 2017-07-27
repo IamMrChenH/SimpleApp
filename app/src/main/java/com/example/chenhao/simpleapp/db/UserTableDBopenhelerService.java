@@ -12,8 +12,9 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17/7/15.
+ *
+ * 这个是一个 专门用于操作用户表（app_user）的操作服务类
  */
-
 public class UserTableDBopenhelerService {
 
     private static UserTableDBopenhelerService instance = null;
@@ -26,6 +27,12 @@ public class UserTableDBopenhelerService {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @param c the c
+     * @return the instance
+     */
     public static UserTableDBopenhelerService getInstance(Context c) {
         if (instance == null) {
             synchronized (UserTableDBopenhelerService.class) {
@@ -44,7 +51,9 @@ public class UserTableDBopenhelerService {
 //    findAll(获取表中所有数据) db.rawQuery("select * from person",new String[] {  });
 //    Sql的语句中，and是&  or 是|  与或 的表示形式。
 
-    /*****************************插入 inser***************************************/
+    /*****************************插入 inser @param bean the bean
+     * @return the boolean
+     */
     public boolean insert(UserInfoBean bean) {
         try {
             if (!isUserName(bean.getUserName())) {
@@ -70,8 +79,8 @@ public class UserTableDBopenhelerService {
     /**
      * 用于判断账户注册 是否重复用户名！ true 表示可以注册 false已注册
      *
-     * @param user
-     * @return
+     * @param user the user
+     * @return boolean
      */
     public boolean isUserName(String user) {
         boolean isUser = false;
@@ -85,6 +94,12 @@ public class UserTableDBopenhelerService {
         return isUser;
     }
 
+    /**
+     * Is name boolean.
+     *
+     * @param name the name
+     * @return the boolean
+     */
     public boolean isName(String name) {
         boolean isName = false;
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -97,6 +112,12 @@ public class UserTableDBopenhelerService {
         return isName;
     }
 
+    /**
+     * Is phone boolean.
+     *
+     * @param phone the phone
+     * @return the boolean
+     */
     public boolean isPhone(String phone) {
         boolean isPhone = false;
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -109,6 +130,12 @@ public class UserTableDBopenhelerService {
         return isPhone;
     }
 
+    /**
+     * Is email boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
     public boolean isEmail(String email) {
         boolean isPhone = false;
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -123,6 +150,13 @@ public class UserTableDBopenhelerService {
 
 //    find（多条件查询）select * from person where id=? and A=? and B=?" new String[] { String.valueOf(Id) ,A,B});
 
+    /**
+     * Find user info bean user info bean.
+     *
+     * @param user the user
+     * @param pass the pass
+     * @return the user info bean
+     */
     public UserInfoBean findUserInfoBean(String user, String pass) {
         UserInfoBean infoBean = null;
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -138,6 +172,11 @@ public class UserTableDBopenhelerService {
     }
 
 
+    /**
+     * Find all user info bean list.
+     *
+     * @return the list
+     */
     public List<UserInfoBean> findAllUserInfoBean() {
         List<UserInfoBean> userInfoBeanList = new ArrayList<>();
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -157,6 +196,12 @@ public class UserTableDBopenhelerService {
     }
 
 
+    /**
+     * Gets cursor content.
+     *
+     * @param cursor the cursor
+     * @return the cursor content
+     */
     public UserInfoBean getCursorContent(Cursor cursor) {
         int id = 0;
         try {
@@ -216,7 +261,10 @@ public class UserTableDBopenhelerService {
         return new UserInfoBean(id, user_name, password, name, email, phone, regist_time, role, carId);
     }
 
-    /****************更新 -- 改  update********************************/
+    /****************更新 -- 改  update @param id the id
+     * @param role the role
+     * @return the boolean
+     */
 //    update（更新）： db.execSQL("update  person set A=? , B=? where id=? ", new Object[] {A,B,id});
     public boolean updateRole(int id, int role) {
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -231,6 +279,13 @@ public class UserTableDBopenhelerService {
         }
     }
 
+    /**
+     * Update car id boolean.
+     *
+     * @param id    the id
+     * @param carId the car id
+     * @return the boolean
+     */
     public boolean updateCarId(int id, String carId) {
         SQLiteDatabase db = mHeler.getWritableDatabase();
         try {

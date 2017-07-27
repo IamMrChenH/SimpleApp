@@ -13,8 +13,10 @@ import com.example.chenhao.simpleapp.R;
 /**
  * Created by IamMr on 2017/7/17.
  */
-
 public abstract class SuperBaseActivity extends BaseActivity {
+    /**
+     * The M toolbar.
+     */
     protected Toolbar mToolbar;
 
     @Override
@@ -28,9 +30,17 @@ public abstract class SuperBaseActivity extends BaseActivity {
 
     }
 
+    /**
+     * Gets toolbar title.
+     *
+     * @return the toolbar title
+     */
     public abstract String getToolbarTitle();
 
 
+    /**
+     * Init toolbar.
+     */
     protected void initToolbar() {
         ((TextView) findView(R.id.mTitle)).setText(getToolbarTitle());
         mToolbar = findView(R.id.mToolbar);
@@ -60,6 +70,11 @@ public abstract class SuperBaseActivity extends BaseActivity {
     }
 
 
+    /**
+     * Add animation.
+     *
+     * @param view the view
+     */
     public void addAnimation(View view) {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(1200);
@@ -74,6 +89,12 @@ public abstract class SuperBaseActivity extends BaseActivity {
         view.setAnimation(set);
     }
 
+    /**
+     * Split and string string.
+     *
+     * @param strings the strings
+     * @return the string
+     */
     public String splitAndString(String[] strings) {
         StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < strings.length; i++) {

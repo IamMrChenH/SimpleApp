@@ -11,8 +11,10 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17/7/15.
+ *
+ * 这个是一个 专门用于操作用户表（addRecord）的操作服务类 但是后面基本没有使用到了
+ * 换成了car_record这张表 替代了
  */
-
 public class DBopenhelerService {
 
     private static DBopenhelerService instance = null;
@@ -25,6 +27,12 @@ public class DBopenhelerService {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @param c the c
+     * @return the instance
+     */
     public static DBopenhelerService getInstance(Context c) {
         if (instance == null) {
             synchronized (DBopenhelerService.class) {
@@ -44,6 +52,12 @@ public class DBopenhelerService {
 //    Sql的语句中，and是&  or 是|  与或 的表示形式。
 
 
+    /**
+     * Insert boolean.
+     *
+     * @param content the content
+     * @return the boolean
+     */
     public boolean insert(String content) {
         try {
             SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -57,12 +71,20 @@ public class DBopenhelerService {
         return true;
     }
 
+    /**
+     * Find.
+     */
     public void find() {
         SQLiteDatabase db = mHeler.getWritableDatabase();
 
     }
 
-    /******************************/
+    /**
+     * Insert record boolean.
+     *
+     * @param content the content
+     * @return the boolean
+     */
     public boolean insertRecord(String content) {
         try {
             SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -77,6 +99,11 @@ public class DBopenhelerService {
     }
 
 
+    /**
+     * Find record list.
+     *
+     * @return the list
+     */
     public List<String> findRecord() {
         List<String> mRecord = new ArrayList<>();
         try {

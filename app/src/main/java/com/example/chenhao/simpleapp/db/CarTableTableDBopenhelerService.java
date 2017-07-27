@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17/7/15.
+ * 这个是一个 专门用于操作小车表（car）的操作服务类
  */
-
 public class CarTableTableDBopenhelerService {
 
     private static CarTableTableDBopenhelerService instance = null;
@@ -26,6 +26,12 @@ public class CarTableTableDBopenhelerService {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @param c the c
+     * @return the instance
+     */
     public static CarTableTableDBopenhelerService getInstance(Context c) {
         if (instance == null) {
             synchronized (CarTableTableDBopenhelerService.class) {
@@ -37,7 +43,9 @@ public class CarTableTableDBopenhelerService {
         return instance;
     }
 
-    /*****************************插入 inser***************************************/
+    /*****************************插入 inser @param bean the bean
+     * @return the boolean
+     */
     public boolean insert(Car bean) {
         try {
             SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -65,7 +73,7 @@ public class CarTableTableDBopenhelerService {
     /**
      * 查询所有小车记录
      *
-     * @return
+     * @return list
      */
     public List<Car> findAllCar() {
         List<Car> cars = new ArrayList<>();
@@ -85,6 +93,12 @@ public class CarTableTableDBopenhelerService {
         return cars;
     }
 
+    /**
+     * Find car car.
+     *
+     * @param id the id
+     * @return the car
+     */
     public Car findCar(int id) {
         Car car = null;
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -99,7 +113,13 @@ public class CarTableTableDBopenhelerService {
         return car;
     }
 
-    //OK
+    /**
+     * Gets cursor content.
+     *
+     * @param cursor the cursor
+     * @return the cursor content
+     */
+//OK
     public Car getCursorContent(Cursor cursor) {
         int id = -1;
         try {
@@ -134,7 +154,10 @@ public class CarTableTableDBopenhelerService {
         return new Car(id, userId, carId, carName, balance);
     }
 
-    /****************更新 -- 改  update********************************/
+    /****************更新 -- 改  update @param id the id
+     * @param balance the balance
+     * @return the boolean
+     */
 //    update（更新）： db.execSQL("update  person set A=? , B=? where id=? ", new Object[] {A,B,id});
     public boolean updateBalance(int id, double balance) {
         SQLiteDatabase db = mHeler.getWritableDatabase();

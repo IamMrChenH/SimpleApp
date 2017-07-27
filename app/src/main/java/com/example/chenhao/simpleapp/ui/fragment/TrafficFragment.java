@@ -18,8 +18,15 @@ import com.example.chenhao.simpleapp.ui.dialog.TrafficYuZhiDialogFragment;
 import static com.example.chenhao.simpleapp.app.BaseData.isTrafficRun;
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Traffic fragment.
+ * 显示小车一些信息的界面
+ */
 public class TrafficFragment extends SuperBaseActivity implements Runnable, AdapterView.OnItemClickListener {
     private ListView mListView;
+    /**
+     * The M adapter.
+     */
     TrafficFragmentListViewAdapter mAdapter;
     private TextView mSpeedT1;
     private TextView mSpeedT2;
@@ -110,7 +117,9 @@ public class TrafficFragment extends SuperBaseActivity implements Runnable, Adap
         return super.onOptionsItemSelected(item);
     }
 
-    /******************************************/
+    /**
+     * The type Traffic fragment list view adapter.
+     */
     class TrafficFragmentListViewAdapter extends BaseAdapter {
 
 

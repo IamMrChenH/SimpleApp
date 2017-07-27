@@ -17,16 +17,34 @@ import java.util.List;
 
 /**
  * Created by lenovo on 2017/5/31.
+ * 简单的一个获取折现图表 类
  */
-
 public class AchartLineView {
 
     private GraphicalView View;
+    /**
+     * The Renderer.
+     */
     XYMultipleSeriesRenderer renderer;
+    /**
+     * The Dataset.
+     */
     XYMultipleSeriesDataset dataset;
+    /**
+     * The Xy series 1.
+     */
     XYSeries xySeries1;
+    /**
+     * The Xy series renderer 1.
+     */
     ColoursXYSeriesRenderer xySeriesRenderer1;
 
+    /**
+     * Instantiates a new Achart line view.
+     *
+     * @param context the context
+     * @param title   the title
+     */
     public AchartLineView(Context context, String title) {
 
         renderer = new XYMultipleSeriesRenderer();
@@ -50,7 +68,7 @@ public class AchartLineView {
 
 
         renderer.setDisplayValues(true);
-        renderer.setYLabelsVerticalPadding(20);
+        renderer.setYLabelsVerticalPadding(5);
         renderer.setPointSize(10);
         renderer.setLabelsTextSize(18);
 
@@ -82,8 +100,17 @@ public class AchartLineView {
 
     }
 
+    /**
+     * The M integers.
+     */
     public List<Integer> mIntegers = new ArrayList<>();
 
+    /**
+     * Update achart line view.
+     *
+     * @param data the data
+     * @return the achart line view
+     */
     public AchartLineView update(int data) {
         mIntegers.add(data);
         while (mIntegers.size() > 7) mIntegers.remove(0);
@@ -106,6 +133,12 @@ public class AchartLineView {
         return this;
     }
 
+    /**
+     * Sets max and min values.
+     *
+     * @param max the max
+     * @param min the min
+     */
     public void setMaxAndMinValues(int max, int min) {
         xySeriesRenderer1.setWarningMaxValue(max);
         xySeriesRenderer1.setWarningMinValue(min);
@@ -113,6 +146,11 @@ public class AchartLineView {
     }
 
 
+    /**
+     * Gets view.
+     *
+     * @return the view
+     */
     public GraphicalView getView() {
         return View;
     }

@@ -7,6 +7,10 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.BaseFragment;
 
 
+/**
+ * The type Head view fragment.
+ * 管理员主Fragment上显示的 三张广告图片的Fragment
+ */
 public class HeadViewFragment extends BaseFragment {
 
     @Override
@@ -22,6 +26,13 @@ public class HeadViewFragment extends BaseFragment {
     private int mParam2;
 
 
+    /**
+     * New instance head view fragment.
+     *
+     * @param param1 the param 1
+     * @param param2 the param 2
+     * @return the head view fragment
+     */
     public static HeadViewFragment newInstance(String param1, int param2) {
         HeadViewFragment fragment = new HeadViewFragment();
         Bundle args = new Bundle();

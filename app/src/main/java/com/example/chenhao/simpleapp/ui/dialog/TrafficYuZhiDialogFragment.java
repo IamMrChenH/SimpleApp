@@ -13,10 +13,23 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.utils.Utils;
 
+/**
+ * The type Traffic yu zhi dialog fragment.
+ * 其实是设置 小车的阈值最高和最小 不过后来使用了ETC 这个类就处于废弃状态了
+ */
 public class TrafficYuZhiDialogFragment extends DialogFragment {
 
+    /**
+     * The M min edit text.
+     */
     public EditText mMinEditText;
+    /**
+     * The M max edit text.
+     */
     public EditText mMaxEditText;
+    /**
+     * The M btn.
+     */
     public Button mBtn;
 
     @Override

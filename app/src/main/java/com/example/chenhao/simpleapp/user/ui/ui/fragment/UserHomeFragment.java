@@ -17,7 +17,15 @@ import java.util.ArrayList;
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type User home fragment.
+ *  显示用户信息界面 差不多废弃了
+ *
+ */
 public class UserHomeFragment extends BaseFragment implements Runnable {
+    /**
+     * The M list view.
+     */
     public ListView mListView;
 
     private ArrayList<UserInfoItem> mItems;
@@ -27,6 +35,12 @@ public class UserHomeFragment extends BaseFragment implements Runnable {
     private String mParam1;
 
 
+    /**
+     * New instance user home fragment.
+     *
+     * @param param1 the param 1
+     * @return the user home fragment
+     */
     public static UserHomeFragment newInstance(String param1) {
         UserHomeFragment fragment = new UserHomeFragment();
         Bundle args = new Bundle();
@@ -59,7 +73,6 @@ public class UserHomeFragment extends BaseFragment implements Runnable {
                 startActivityForResult(new Intent(getActivity(), CarActivity.class), 1002);
                 return;
             }
-
 
 //            mListView.setAdapter(mAdapter = new UserHomeActivityListViewAdapter());
 

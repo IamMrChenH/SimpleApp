@@ -14,10 +14,16 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17-3-19.
+ * 显示用户信息的一个ListView 适配器
  */
-
 public class UserInfoListAdapter extends BaseListGridAdapter<UserInfoItem> {
 
+    /**
+     * Instantiates a new User info list adapter.
+     *
+     * @param context the context
+     * @param items   the items
+     */
     public UserInfoListAdapter(Context context, List<UserInfoItem> items) {
         super(context, items);
     }

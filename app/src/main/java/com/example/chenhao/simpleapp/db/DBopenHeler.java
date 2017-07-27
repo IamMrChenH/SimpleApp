@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by chenhao on 17/7/15.
+ * 数据库类 包含5张表 主要使用的是car、car_record 和app_user三张表
  */
-
 public class DBopenHeler extends SQLiteOpenHelper {
     private static final String TAG = "DBopenHeler";
     private static DBopenHeler instance = null;
@@ -17,6 +17,12 @@ public class DBopenHeler extends SQLiteOpenHelper {
         super(context, TAG, null, 1);
     }
 
+    /**
+     * Gets instance.
+     *
+     * @param c the c
+     * @return the instance
+     */
     public static DBopenHeler getInstance(Context c) {
         if (instance == null) {
             synchronized (DBopenHeler.class) {

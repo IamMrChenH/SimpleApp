@@ -16,9 +16,19 @@ import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
+/**
+ * The type Car info activity.
+ * 用户的小车信息界面
+ */
 public class CarInfoActivity extends SuperBaseActivity implements Runnable {
     private Car car;
+    /**
+     * The M adapter.
+     */
     UserHomeActivityListViewAdapter mAdapter;
+    /**
+     * The M list view.
+     */
     ListView mListView;
 
     @Override
@@ -60,7 +70,9 @@ public class CarInfoActivity extends SuperBaseActivity implements Runnable {
         }
     }
 
-    /**************************************************/
+    /**
+     * The type User home activity list view adapter.
+     */
     class UserHomeActivityListViewAdapter extends BaseAdapter {
 
 

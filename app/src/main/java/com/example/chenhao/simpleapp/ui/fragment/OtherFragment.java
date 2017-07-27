@@ -12,6 +12,10 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.BaseFragment;
 import com.example.chenhao.simpleapp.ui.activity.StreetLedActivity;
 
+/**
+ * The type Other fragment.
+ * 主界面下 的其他按钮之后的界面
+ */
 public class OtherFragment extends BaseFragment implements AdapterView.OnItemClickListener {
     private static final String TAG = "OtherFragment";
     private ListView mListView;
@@ -54,6 +58,9 @@ public class OtherFragment extends BaseFragment implements AdapterView.OnItemCli
     }
 
 
+    /**
+     * The type Other fragment list view adapter.
+     */
     class OtherFragmentListViewAdapter extends BaseAdapter {
         @Override
         public int getCount() {

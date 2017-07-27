@@ -30,6 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The type Admin home fragment.
+ * 管理员的主界面中显示的 主Fragment
+ */
 public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageChangeListener, Runnable {
     @Override
     public int getLayoutId() {
@@ -44,12 +48,21 @@ public class AdminHomeFragment extends BaseFragment implements ViewPager.OnPageC
 
     private ViewPager mPager;
     private List<Fragment> mFragments;
+    /**
+     * The M view pager current position.
+     */
     int mViewPagerCurrentPosition = 0;
 
     private TextView mTime;
 
+    /**
+     * The M ui handler.
+     */
     public Handler mUIHandler;
 
+    /**
+     * The M radio buttons.
+     */
     RadioButton[] mRadioButtons = new RadioButton[3];
 
     @Override

@@ -24,14 +24,24 @@ import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Car activity.
+ * 用户的小车界面
+ */
 public class CarActivity extends SuperBaseActivity {
 
     private UserTableDBopenhelerService instance;
     private String[] split;
     private CarTableTableDBopenhelerService instanceCar;
+    /**
+     * The M cars.
+     */
     List<Car> mCars = new ArrayList<>();
 
     private ListView mListView;
+    /**
+     * The M adapter.
+     */
     CarActivityListViewAdapter1 mAdapter;
     private Dialog dialog;
 
@@ -90,11 +100,17 @@ public class CarActivity extends SuperBaseActivity {
 
     }
 
+    /**
+     * Update.
+     */
     public void update() {
         initDatas();
         mAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * Show dialog.
+     */
     public void showDialog() {
         ListView listView = new ListView(this);
         listView.setAdapter(new CarActivityListViewAdapter2(instanceCar.findAllCar()));
@@ -105,6 +121,9 @@ public class CarActivity extends SuperBaseActivity {
 
     }
 
+    /**
+     * Dissmiss dialog.
+     */
     public void dissmissDialog() {
         if (dialog.isShowing())
             dialog.dismiss();
@@ -118,10 +137,17 @@ public class CarActivity extends SuperBaseActivity {
         return "我的小车";
     }
 
-    /***************************************************************/
+    /**
+     * The type Car activity list view adapter 1.
+     */
     class CarActivityListViewAdapter1 extends BaseAdapter {
         private List<Car> mCars;
 
+        /**
+         * Instantiates a new Car activity list view adapter 1.
+         *
+         * @param mCars the m cars
+         */
         public CarActivityListViewAdapter1(List<Car> mCars) {
             this.mCars = mCars;
         }
@@ -184,10 +210,17 @@ public class CarActivity extends SuperBaseActivity {
 //        return super.onOptionsItemSelected(item);
     }
 
-    /*********************************************************/
+    /**
+     * The type Car activity list view adapter 2.
+     */
     class CarActivityListViewAdapter2 extends BaseAdapter {
         private List<Car> mCars;
 
+        /**
+         * Instantiates a new Car activity list view adapter 2.
+         *
+         * @param mCars the m cars
+         */
         public CarActivityListViewAdapter2(List<Car> mCars) {
             this.mCars = mCars;
         }

@@ -15,12 +15,22 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+/**
+ * The type Image view plus.
+ * 自定义的圆形 ImageView
+ */
 public class ImageViewPlus extends ImageView {
     private Paint mPaintBitmap = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap mRawBitmap;
     private BitmapShader mShader;
     private Matrix mMatrix = new Matrix();
 
+    /**
+     * Instantiates a new Image view plus.
+     *
+     * @param context the context
+     * @param attrs   the attrs
+     */
     public ImageViewPlus(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

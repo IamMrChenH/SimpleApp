@@ -22,6 +22,11 @@ import com.example.chenhao.simpleapp.ui.fragment.OtherFragment;
 import com.example.chenhao.simpleapp.ui.fragment.TrafficFragment;
 import com.example.chenhao.simpleapp.utils.Utils;
 
+/**
+ * The type Home activity.
+ * 管理员的主界面 activity
+ *
+ */
 public class HomeActivity extends SuperBaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "HomeActivity";
 
@@ -174,6 +179,9 @@ public class HomeActivity extends SuperBaseActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * The Is exit.
+     */
     boolean isExit = false;
 
     @Override

@@ -13,6 +13,10 @@ import com.example.chenhao.simpleapp.utils.Utils;
 
 import java.util.regex.Pattern;
 
+/**
+ * The type Register activity.
+ * 注册界面
+ */
 public class RegisterActivity extends SuperBaseActivity {
 
     private EditText mUserNameText;

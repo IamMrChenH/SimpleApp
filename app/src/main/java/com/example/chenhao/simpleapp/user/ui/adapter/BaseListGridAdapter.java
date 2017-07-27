@@ -13,19 +13,41 @@ import java.util.Locale;
 
 /**
  * Created by chenhao on 2017/3/29.
+ *一个通用的抽象适配器
+ * @param <T> the type parameter
  */
-
 public abstract class BaseListGridAdapter<T> extends android.widget.BaseAdapter {
+    /**
+     * The M items.
+     */
     public List<T> mItems;
+    /**
+     * The M inflater.
+     */
     public LayoutInflater mInflater;
+    /**
+     * The M context.
+     */
     public Context mContext;
 
+    /**
+     * Instantiates a new Base list grid adapter.
+     *
+     * @param context the context
+     * @param items   the items
+     */
     public BaseListGridAdapter(Context context, List<T> items) {
         this.mItems = items;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
     }
 
+    /**
+     * Gets drawable.
+     *
+     * @param id the id
+     * @return the drawable
+     */
     public Drawable getDrawable(int id) {
         return mContext.getResources().getDrawable(id, null);
     }
@@ -48,11 +70,25 @@ public abstract class BaseListGridAdapter<T> extends android.widget.BaseAdapter 
     @Override
     public abstract View getView(int position, View convertView, ViewGroup parent);
 
+    /**
+     * Find view t.
+     *
+     * @param <T>  the type parameter
+     * @param view the view
+     * @param id   the id
+     * @return the t
+     */
     public <T extends View> T findView(View view, int id) {
 
         return (T) view.findViewById(id);
     }
 
+    /**
+     * Gets time.
+     *
+     * @param date the date
+     * @return the time
+     */
     public String getTime(String date) {
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss",
                 Locale.CHINA);
@@ -67,6 +103,12 @@ public abstract class BaseListGridAdapter<T> extends android.widget.BaseAdapter 
 
     }
 
+    /**
+     * Gets time.
+     *
+     * @param date the date
+     * @return the time
+     */
     public String getTime(long date) {
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss",
                 Locale.CHINA);
@@ -79,6 +121,12 @@ public abstract class BaseListGridAdapter<T> extends android.widget.BaseAdapter 
         }
     }
 
+    /**
+     * Is empty string.
+     *
+     * @param msg the msg
+     * @return the string
+     */
     public String isEmpty(String msg) {
         if (TextUtils.isEmpty(msg)) {
             return "未填写";

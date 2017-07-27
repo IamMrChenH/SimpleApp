@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17/7/15.
+ * 这个是一个 专门用于操作小车操作记录表（car_record）的操作服务类
  */
-
 public class CarRecordTableTableDBopenhelerService {
 
     private static CarRecordTableTableDBopenhelerService instance = null;
@@ -26,6 +26,12 @@ public class CarRecordTableTableDBopenhelerService {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @param c the c
+     * @return the instance
+     */
     public static CarRecordTableTableDBopenhelerService getInstance(Context c) {
         if (instance == null) {
             synchronized (CarRecordTableTableDBopenhelerService.class) {
@@ -37,7 +43,9 @@ public class CarRecordTableTableDBopenhelerService {
         return instance;
     }
 
-    /*****************************插入 inser***************************************/
+    /*****************************插入 inser @param bean the bean
+     * @return the boolean
+     */
     public boolean insert(CarRecord bean) {
         try {
             SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -67,7 +75,7 @@ public class CarRecordTableTableDBopenhelerService {
     /**
      * 查询所有小车记录
      *
-     * @return
+     * @return list
      */
     public List<CarRecord> findAllCar() {
         List<CarRecord> cars = new ArrayList<>();
@@ -86,6 +94,12 @@ public class CarRecordTableTableDBopenhelerService {
         return cars;
     }
 
+    /**
+     * Find car record list.
+     *
+     * @param id the id
+     * @return the list
+     */
     public List<CarRecord> findCarRecord(int id) {
         List<CarRecord> cars = new ArrayList<>();
         SQLiteDatabase db = mHeler.getWritableDatabase();
@@ -104,7 +118,13 @@ public class CarRecordTableTableDBopenhelerService {
         return cars;
     }
 
-    //OK
+    /**
+     * Gets cursor content.
+     *
+     * @param cursor the cursor
+     * @return the cursor content
+     */
+//OK
     public CarRecord getCursorContent(Cursor cursor) {
         int id = -1;
         try {
@@ -149,7 +169,10 @@ public class CarRecordTableTableDBopenhelerService {
         return new CarRecord(id, carId, money, opType, userId, opTime);
     }
 
-    /****************更新 -- 改  update********************************/
+    /****************更新 -- 改  update @param id the id
+     * @param balance the balance
+     * @return the boolean
+     */
 //    update（更新）： db.execSQL("update  person set A=? , B=? where id=? ", new Object[] {A,B,id});
     public boolean updateBalance(int id, double balance) {
         SQLiteDatabase db = mHeler.getWritableDatabase();

@@ -6,6 +6,10 @@ import android.os.Bundle;
 import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.base.BaseActivity;
 
+/**
+ * The type Welcome activity.
+ * 欢迎界面
+ */
 public class WelcomeActivity extends BaseActivity {
 
     @Override

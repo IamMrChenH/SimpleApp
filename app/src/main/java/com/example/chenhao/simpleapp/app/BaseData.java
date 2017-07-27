@@ -23,33 +23,82 @@ import java.util.Random;
 import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
 /**
- * Created by lenovo on 2017/5/31.
+ * The type Base data.
  */
-
 public class BaseData {
+    /**
+     * The constant mUserInfoBean.
+     */
     public static UserInfoBean mUserInfoBean = null;
 
+    /**
+     * The constant mName.
+     */
     public static String mName = "默认";
+    /**
+     * The M sense name.
+     */
     public static String[] mSenseName = {"空气温度", "空气湿度", "pm2.5", "CO2", "光照", "道路状态", "ETC账户余额"};
+    /**
+     * The M sense data.
+     */
     public static int[] mSenseData = {0, 0, 0, 0, 0, 0, 0};
+    /**
+     * The M sense min data.
+     */
     public static int[] mSenseMinData = {10, 50, 500, 100, 0, 1, 10};
+    /**
+     * The M sense max data.
+     */
     public static int[] mSenseMaxData = {40, 150, 5000, 600, 100, 5, 5000};
 
 
     private static String[] mTrafficNames = {};
+    /**
+     * The M traffic data.
+     */
     public static int[] mTrafficData = {40, 100, 500, 60};
+    /**
+     * The constant mTrafficMinData.
+     */
     public static int mTrafficMinData = 10;
+    /**
+     * The constant mTrafficMaxData.
+     */
     public static int mTrafficMaxData = 90;
+    /**
+     * The constant isTrafficRun.
+     */
     public static boolean isTrafficRun = false;
 
 
+    /**
+     * The M rorund data.
+     */
     public static int[] mRorundData = {1, 2, 3, 4, 5};
+    /**
+     * The constant mUserBean.
+     */
     public static UserBean mUserBean = new UserBean();
+    /**
+     * The M car money.
+     */
     public static int[] mCarMoney = {100, 200, 300, 400};
+    /**
+     * The constant mCarMinMoney.
+     */
     public static int mCarMinMoney = 0;
+    /**
+     * The constant mCarMaxMoney.
+     */
     public static int mCarMaxMoney = 5*1000;
 
 
+    /**
+     * Start data.
+     *
+     * @param context the context
+     */
     public static void startData(final Activity context) {
         getWthrcdnData(context);
         mSenseData[6] = new Random().nextInt(1000);
@@ -128,6 +177,11 @@ public class BaseData {
 
     }
 
+    /**
+     * Gets wthrcdn data.
+     *
+     * @param context the context
+     */
     public static void getWthrcdnData(Context context) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 

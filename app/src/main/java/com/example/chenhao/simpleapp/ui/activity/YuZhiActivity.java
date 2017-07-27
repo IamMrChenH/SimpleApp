@@ -12,8 +12,15 @@ import com.example.chenhao.simpleapp.R;
 import com.example.chenhao.simpleapp.app.BaseData;
 import com.example.chenhao.simpleapp.base.SuperBaseActivity;
 
+/**
+ * The type Yu zhi activity.
+ * 阈值设置界面
+ */
 public class YuZhiActivity extends SuperBaseActivity {
     private ListView mListView;
+    /**
+     * The M adapter.
+     */
     YuZhiListViewAdapter mAdapter;
 
     @Override
@@ -36,6 +43,9 @@ public class YuZhiActivity extends SuperBaseActivity {
         return "阈值设置";
     }
 
+    /**
+     * The type Yu zhi list view adapter.
+     */
     class YuZhiListViewAdapter extends BaseAdapter {
 
         @Override
@@ -100,6 +110,13 @@ public class YuZhiActivity extends SuperBaseActivity {
             return view;
         }
 
+        /**
+         * Yu zhi settings.
+         *
+         * @param position the position
+         * @param min      the min
+         * @param max      the max
+         */
         public void yuZhiSettings(int position, int min, int max) {
             BaseData.mSenseMinData[position] = min;
             BaseData.mSenseMaxData[position] = max;

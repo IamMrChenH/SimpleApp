@@ -12,56 +12,82 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
+/**
+ * The type Divider item decoration.
+ * 现已废弃
+ * RecyclyView的隔离线 不过已经废弃
+ */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
   
   
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};  
   
     private Drawable mDivider;
-  
+
+    /**
+     * The constant HORIZONTAL_LIST.
+     */
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
+
+    /**
+     * The constant VERTICAL_LIST.
+     */
+    public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
   
-    public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;  
-  
-    private int mOrientation;  
-  
-    /** 
-     * @param context 
-     * @param width   分割线宽 
-     * @param height  分割线高 
-     * @param color   分割线颜色 十进制 
-     */  
+    private int mOrientation;
+
+    /**
+     * Instantiates a new Divider item decoration.
+     *
+     * @param context the context
+     * @param width   分割线宽
+     * @param height  分割线高
+     * @param color   分割线颜色 十进制
+     */
     public DividerItemDecoration(Context context, int width, int height, int color) {
 //        final TypedArray a = context.obtainStyledAttributes(ATTRS);  
 //        mDivider = a.getDrawable(0);  
 //        a.recycle();  
         mDivider = new BaseDrawable(createRGBImage(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444), color));
-    }  
-  
-    /** 
-     * LinearLayoutManager时的构造方法 
-     * @param context 
-     * @param orientation 
-     * @param width 
-     * @param height 
-     * @param color 
-     */  
-    public DividerItemDecoration(Context context, int orientation, int width, int height, int color) {  
+    }
+
+    /**
+     * LinearLayoutManager时的构造方法
+     *
+     * @param context     the context
+     * @param orientation the orientation
+     * @param width       the width
+     * @param height      the height
+     * @param color       the color
+     */
+    public DividerItemDecoration(Context context, int orientation, int width, int height, int color) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);  
         a.recycle();  
 //        mDivider = new BaseDrawable(createRGBImage(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444), color));  
         setOrientation(orientation);  
-    }  
-  
-    public void setOrientation(int orientation) {  
+    }
+
+    /**
+     * Sets orientation.
+     *
+     * @param orientation the orientation
+     */
+    public void setOrientation(int orientation) {
         if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {  
             throw new IllegalArgumentException("invalid orientation");  
         }  
         mOrientation = orientation;  
-    }  
-  
-    public static final Bitmap createRGBImage(Bitmap bitmap, int color) {  
+    }
+
+    /**
+     * Create rgb image bitmap.
+     *
+     * @param bitmap the bitmap
+     * @param color  the color
+     * @return the bitmap
+     */
+    public static final Bitmap createRGBImage(Bitmap bitmap, int color) {
         int bitmap_w = bitmap.getWidth();  
         int bitmap_h = bitmap.getHeight();  
         int[] arrayColor = new int[bitmap_w * bitmap_h];  
@@ -111,9 +137,15 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             spanCount = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();  
         }  
         return spanCount;  
-    }  
-  
-    public void drawHorizontal(Canvas c, RecyclerView parent) {  
+    }
+
+    /**
+     * Draw horizontal.
+     *
+     * @param c      the c
+     * @param parent the parent
+     */
+    public void drawHorizontal(Canvas c, RecyclerView parent) {
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();  
         if (layoutManager instanceof LinearLayoutManager) {  
 //            LogUtil.e("linear------drawHorizontal");
@@ -146,9 +178,15 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
                 mDivider.draw(c);  
             }  
         }  
-    }  
-  
-    public void drawVertical(Canvas c, RecyclerView parent) {  
+    }
+
+    /**
+     * Draw vertical.
+     *
+     * @param c      the c
+     * @param parent the parent
+     */
+    public void drawVertical(Canvas c, RecyclerView parent) {
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();  
         if (layoutManager instanceof LinearLayoutManager) {  
 //            LogUtil.e("linear------drawVertical");

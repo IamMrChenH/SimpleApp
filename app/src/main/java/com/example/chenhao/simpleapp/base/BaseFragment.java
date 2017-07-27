@@ -16,9 +16,12 @@ import com.example.chenhao.simpleapp.utils.Utils;
 /**
  * Created by lenovo on 2017/5/31.
  */
-
 public abstract class BaseFragment extends Fragment {
 
+    /**
+     * The M base handler. 通用Handle
+     *
+     */
     public Handler mBaseHandler = new Handler();
     private ProgressDialog mProgressDialog;
 
@@ -34,24 +37,58 @@ public abstract class BaseFragment extends Fragment {
         initFragmentDataAndView();
     }
 
+    /**
+     * Gets layout id.
+     *设置布局ID
+     * @return the layout id
+     */
     public abstract int getLayoutId();
 
+    /**
+     * Init fragment data and view.
+     * 在Fragment的onActivityCreated生命周期中执行
+     */
     public abstract void initFragmentDataAndView();
 
 
+    /**
+     * Find view t.
+     *不用强转View 的获取方法
+     * @param <T> the type parameter
+     * @param id  the id
+     * @return the t
+     */
     public <T extends View> T findView(int id) {
         return (T) getView().findViewById(id);
     }
 
+    /**
+     * Find view t.
+     *不用强转View 的获取方法
+     * @param <T>  the type parameter
+     * @param view the view
+     * @param id   the id
+     * @return the t
+     */
     public <T extends View> T findView(View view,int id) {
         return (T)view.findViewById(id);
     }
 
+    /**
+     * Show toast.
+     *通用的Toast来显示提醒消息
+     * @param msg the msg
+     */
     public static void showToast(String msg) {
         Utils.showToast(msg);
     }
 
 
+    /**
+     * Show loder dialog.
+     *  显示加载中的对话框
+     * @param msg the msg
+     */
     public void showLoderDialog(String msg) {
         try {
             if (mProgressDialog != null)
@@ -69,6 +106,10 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
+    /**
+     * Dismiss loder dialog.
+     * 关闭对话框
+     */
     public void dismissLoderDialog() {
         try {
             if (mProgressDialog != null)
@@ -78,6 +119,11 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    /**
+     * Show msg dialog.
+     *显示一个  提示消息的 对话框
+     * @param msg the msg
+     */
     public void showMsgDialog(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(msg)
@@ -88,6 +134,10 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+    /**
+     * 不保存状态
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
