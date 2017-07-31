@@ -79,6 +79,7 @@ public class CarActivity extends SuperBaseActivity {
         String carId = userInfoBean.getCarId();
         Log.e("233", "initDatas: " + carId);
         try {
+
             if (carId != null) {
                 split = carId.split(",");
                 mCars.clear();
@@ -86,6 +87,8 @@ public class CarActivity extends SuperBaseActivity {
                     if (!TextUtils.isEmpty(split[i])) {
                         Car car = instanceCar.findCar(Integer.valueOf(split[i]));
                         mCars.add(car);
+                    } else {
+                        getSharedPreferences("data", MODE_PRIVATE).edit().clear().commit();
                     }
                 }
 
@@ -266,8 +269,6 @@ public class CarActivity extends SuperBaseActivity {
                             isAdd = false;
                         }
                     }
-
-
                     if (!isAdd) {
                         showMsgDialog("不能添加重复的小车！");
                         return;

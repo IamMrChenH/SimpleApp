@@ -6,11 +6,16 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chenhao.simpleapp.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,7 +25,6 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * The M base handler. 通用Handle
-     *
      */
     public Handler mBaseHandler = new Handler();
     private ProgressDialog mProgressDialog;
@@ -39,7 +43,8 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * Gets layout id.
-     *设置布局ID
+     * 设置布局ID
+     *
      * @return the layout id
      */
     public abstract int getLayoutId();
@@ -53,7 +58,8 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * Find view t.
-     *不用强转View 的获取方法
+     * 不用强转View 的获取方法
+     *
      * @param <T> the type parameter
      * @param id  the id
      * @return the t
@@ -64,19 +70,21 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * Find view t.
-     *不用强转View 的获取方法
+     * 不用强转View 的获取方法
+     *
      * @param <T>  the type parameter
      * @param view the view
      * @param id   the id
      * @return the t
      */
-    public <T extends View> T findView(View view,int id) {
-        return (T)view.findViewById(id);
+    public <T extends View> T findView(View view, int id) {
+        return (T) view.findViewById(id);
     }
 
     /**
      * Show toast.
-     *通用的Toast来显示提醒消息
+     * 通用的Toast来显示提醒消息
+     *
      * @param msg the msg
      */
     public static void showToast(String msg) {
@@ -86,7 +94,8 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * Show loder dialog.
-     *  显示加载中的对话框
+     * 显示加载中的对话框
+     *
      * @param msg the msg
      */
     public void showLoderDialog(String msg) {
@@ -121,7 +130,8 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * Show msg dialog.
-     *显示一个  提示消息的 对话框
+     * 显示一个  提示消息的 对话框
+     *
      * @param msg the msg
      */
     public void showMsgDialog(String msg) {
@@ -136,10 +146,30 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 不保存状态
+     *
      * @param outState
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
     }
+
+    public static  String[] deleteNull(String[] a) {
+        List<String> mList = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
+            if ((!TextUtils.isEmpty(a[i])) && !(a[i].equals("null"))) {
+                mList.add(a[i]);
+            }
+        }
+
+
+        String[] strings = new String[mList.size()];
+        mList.toArray(strings);
+        for (int i = 0; i < mList.size(); i++) {
+            Log.e("234", "deleteNull: " + mList.get(i));
+        }
+        return strings;
+
+    }
+
 }

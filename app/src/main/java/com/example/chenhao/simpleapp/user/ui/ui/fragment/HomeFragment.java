@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -95,13 +96,28 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
         mPreferences = getActivity().getSharedPreferences("data", MODE_PRIVATE);
         mUserInfoBean = UserTableDBopenhelerService.getInstance(getActivity()).findUserInfoBean(mUserInfoBean.getUserName(), mUserInfoBean.getPassword());
         instance = CarTableTableDBopenhelerService.getInstance(getActivity());
-        car = instance.findCar(2);
+
         String data = "未绑定小车";
         if (!TextUtils.isEmpty(mUserInfoBean.getCarId())) {
             split = mUserInfoBean.getCarId().split(",");
+            split = deleteNull(split);
             if (!TextUtils.isEmpty(mPreferences.getString("data", ""))) {
-                data = mPreferences.getString("data", "");
+                int num = mPreferences.getInt("num", 0);
+                car = instance.findCar(num);
+                if (mUserInfoBean.getCarId().indexOf("" + num) > -1) {
+                    data = mPreferences.getString("data", "");
+
+                } else {
+                    data = split[0] + "号小车";
+                    mPreferences.edit()
+                            .putInt("num", Integer.valueOf(split[0]))
+                            .putString("data", data)
+                            .commit();
+                }
+
+
             } else {
+                car = instance.findCar(Integer.valueOf(split[0]));
                 data = split[0] + "号小车";
                 mPreferences.edit()
                         .putInt("num", Integer.valueOf(split[0]))
@@ -213,9 +229,12 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
         CarTableTableDBopenhelerService instanceCar = CarTableTableDBopenhelerService.getInstance(getActivity());
         ListView listView = new ListView(getActivity());
         if (split != null) {
+            split = deleteNull(split);
             for (int i = 0; i < split.length; i++) {
-                if (!TextUtils.isEmpty(split[i]))
+                if (!TextUtils.isEmpty(split[i])) {
+                    Log.e("233", "showDialog: " + split[i].toString());
                     mCars.add(instanceCar.findCar(Integer.valueOf(split[i])));
+                }
             }
             listView.setAdapter(new CarActivityListViewAdapter2(mCars));
             dialog.setContentView(listView);
@@ -293,7 +312,6 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
                             .putInt("num", item.getId())
                             .commit();
                     dissmissDialog();
-
 
                     startActivity(new Intent(getActivity(), UserHomeActivity.class));
                     getActivity().finish();

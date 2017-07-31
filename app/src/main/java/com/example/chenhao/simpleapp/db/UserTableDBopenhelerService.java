@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.chenhao.simpleapp.base.BaseFragment;
 import com.example.chenhao.simpleapp.base.UserInfoBean;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 
 /**
  * Created by chenhao on 17/7/15.
- *
+ * <p>
  * 这个是一个 专门用于操作用户表（app_user）的操作服务类
  */
 public class UserTableDBopenhelerService {
@@ -254,6 +255,16 @@ public class UserTableDBopenhelerService {
         String carId = null;
         try {
             carId = cursor.getString(cursor.getColumnIndex("carId"));
+            String[] split = carId.split(",");
+            split = BaseFragment.deleteNull(split);
+            StringBuffer buffer = new StringBuffer();
+            for (int i = 0; i < split.length; i++) {
+                buffer.append(split[i]);
+                if (i < split.length - 1) {
+                    buffer.append(",");
+                }
+            }
+            carId = buffer.toString();
         } catch (Exception e) {
             e.printStackTrace();
             carId = null;
