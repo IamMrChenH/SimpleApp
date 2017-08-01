@@ -18,6 +18,8 @@ import com.example.chenhao.simpleapp.db.DBopenhelerService;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
+
 /**
  * The type Record activity.
  * 用户的小车历史界面
@@ -51,7 +53,7 @@ public class RecordActivity extends BaseActivity {
 //        mRecord = instance.findRecord();
 
         instanceCarRecord = CarRecordTableTableDBopenhelerService.getInstance(this);
-        allCar = instanceCarRecord.findAllCar();
+        allCar = instanceCarRecord.findUserCarRecord(mUserInfoBean.getId());
     }
 
     private void initViews() {
@@ -115,7 +117,7 @@ public class RecordActivity extends BaseActivity {
 
             CarRecord carRecord = allCar.get(position);
             t0.setText(carRecord.getId() + "");
-            t1.setText(carRecord.getUserId() + "");
+            t1.setText(mUserInfoBean.getName() + "");
             t2.setText(carRecord.getOpTime());
             t3.setText(carRecord.getMoney() + "");
             t4.setText(carRecord.getCarId() + "");

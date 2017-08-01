@@ -1,6 +1,7 @@
 package com.example.chenhao.simpleapp.user.ui.ui.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,12 @@ import com.example.chenhao.simpleapp.db.CarRecordTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.DBopenhelerService;
 import com.example.chenhao.simpleapp.user.ui.ui.activity.RecordActivity;
+import com.example.chenhao.simpleapp.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * The type Add fragment.
@@ -40,6 +44,8 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     public float[] mOriginal = {10, 20, 30, 50, 100, 200, 300, 500, 1000};
     private DBopenhelerService instance;
     private CarTableTableDBopenhelerService instanceCar;
+    private SharedPreferences mPreferences;
+    private int num;
 
     @Override
     public int getLayoutId() {
@@ -50,7 +56,12 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     public void initFragmentDataAndView() {
         instance = DBopenhelerService.getInstance(getActivity());
         instanceCar = CarTableTableDBopenhelerService.getInstance(getActivity());
+        mPreferences = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+        num = mPreferences.getInt("num", -1);
+        Car car = instanceCar.findCar(num);
         initViews();
+        if (num > 0) num = num - 1;
+        mItemSpinner1.setSelection(num);
     }
 
     private void initViews() {
@@ -66,6 +77,10 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
         findView(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (num < 0) {
+                    Utils.showToast("未绑定小车，无法充值！");
+                    return;
+                }
                 String mIdStr = mItemEdit2.getText().toString();
                 try {
                     Integer mNumber = Integer.valueOf(mIdStr);
@@ -92,7 +107,10 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        if (num < 0) {
+            Utils.showToast("未绑定小车，无法充值！");
+            return;
+        }
         float mAddTempMoney = (float) (mOriginal[position]);
 
         if (position == mOriginal.length - 1) {

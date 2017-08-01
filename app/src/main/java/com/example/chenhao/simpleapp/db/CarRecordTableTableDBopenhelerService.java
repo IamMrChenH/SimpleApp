@@ -10,6 +10,8 @@ import com.example.chenhao.simpleapp.bean.CarRecord;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.id;
+
 /**
  * Created by chenhao on 17/7/15.
  * 这个是一个 专门用于操作小车操作记录表（car_record）的操作服务类
@@ -94,6 +96,7 @@ public class CarRecordTableTableDBopenhelerService {
         return cars;
     }
 
+
     /**
      * Find car record list.
      *
@@ -105,6 +108,24 @@ public class CarRecordTableTableDBopenhelerService {
         SQLiteDatabase db = mHeler.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from car_record where carId=?",
                 new String[]{String.valueOf(id)});
+        while (cursor.moveToNext()) {
+            CarRecord car = getCursorContent(cursor);
+            if (car != null) {
+                cars.add(car);
+                Log.e("db", car.toString());
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return cars;
+    }
+
+    public List<CarRecord> findUserCarRecord(int userId) {
+        List<CarRecord> cars = new ArrayList<>();
+        SQLiteDatabase db = mHeler.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from car_record where userId=?",
+                new String[]{String.valueOf(userId)});
         while (cursor.moveToNext()) {
             CarRecord car = getCursorContent(cursor);
             if (car != null) {

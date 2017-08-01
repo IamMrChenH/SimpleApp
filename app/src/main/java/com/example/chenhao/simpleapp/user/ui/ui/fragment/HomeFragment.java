@@ -84,6 +84,8 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
     private List<HomeMenuItem> mItems;
     private List<String> mNames = new ArrayList<>();
 
+    private boolean mShowStatus = false;
+
     @Override
     public void initFragmentDataAndView() {
         getActivity().setTitle("用户");
@@ -155,6 +157,10 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
             mBalanceText.setText(car.getBalance() + "");
             mSpeedText.setText("" + mTrafficData[1]);
             mCarStatus.setText("正常");
+        } else {
+            mBalanceText.setText("无");
+            mSpeedText.setText("无");
+            mCarStatus.setText("无");
         }
         mListView.setAdapter(mHomeListAdapter);
 //
@@ -187,6 +193,8 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
     @Override
     public void run() {
         String t3Str = "正常";
+
+
         pm2_5 = "PM2.5正常->小于400";
         if (BaseData.mUserBean.getStatus() == 1) {
             t3Str = "限行";
@@ -195,10 +203,21 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
             t3Str = "停止";
             pm2_5 = "PM2.5过大->大于500,城市禁行！";
         }
+
+
         mHomeListAdapter.notifyDataSetChanged();
         mHomeListAdapter.notifyDataSetInvalidated();
         mCarStatus.setText(t3Str);
         mSpeedText.setText("" + mTrafficData[1]);
+
+
+        if (car != null) {
+            mCarStatus.setText("正常");
+            mSpeedText.setText("" + mTrafficData[1]);
+        } else {
+            mCarStatus.setText("无");
+            mSpeedText.setText("无");
+        }
     }
 
 

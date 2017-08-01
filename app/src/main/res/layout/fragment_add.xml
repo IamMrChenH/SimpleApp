@@ -118,6 +118,14 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
             android:textColor="#FFF" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="未绑定小车，将无法使用充值服务。"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
 
     </LinearLayout>
 
