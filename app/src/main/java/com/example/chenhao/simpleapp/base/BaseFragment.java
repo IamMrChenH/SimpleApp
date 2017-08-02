@@ -1,6 +1,7 @@
 package com.example.chenhao.simpleapp.base;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -144,6 +145,17 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+
+    public void showMsgDialog(String msg, DialogInterface.OnClickListener listener1) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(msg)
+                .setTitle("温馨提示")
+                .setCancelable(false)
+                .setPositiveButton("确定", listener1).setNegativeButton("取消", null)
+                .show();
+
+    }
+
     /**
      * 不保存状态
      *
@@ -154,7 +166,7 @@ public abstract class BaseFragment extends Fragment {
 //        super.onSaveInstanceState(outState);
     }
 
-    public static  String[] deleteNull(String[] a) {
+    public static String[] deleteNull(String[] a) {
         List<String> mList = new ArrayList<>();
         for (int i = 0; i < a.length; i++) {
             if ((!TextUtils.isEmpty(a[i])) && !(a[i].equals("null"))) {

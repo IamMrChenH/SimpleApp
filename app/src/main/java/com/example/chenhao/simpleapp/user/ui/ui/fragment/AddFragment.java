@@ -1,5 +1,6 @@
 package com.example.chenhao.simpleapp.user.ui.ui.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.chenhao.simpleapp.app.BaseData.mUserInfoBean;
 
 /**
  * The type Add fragment.
@@ -46,6 +48,7 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     private CarTableTableDBopenhelerService instanceCar;
     private SharedPreferences mPreferences;
     private int num;
+    private String[] split;
 
     @Override
     public int getLayoutId() {
@@ -58,6 +61,7 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
         instanceCar = CarTableTableDBopenhelerService.getInstance(getActivity());
         mPreferences = getActivity().getSharedPreferences("data", MODE_PRIVATE);
         num = mPreferences.getInt("num", -1);
+        split = mUserInfoBean.getCarId().split(",");
         Car car = instanceCar.findCar(num);
         initViews();
         if (num > 0) num = num - 1;
@@ -103,10 +107,41 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
             }
         });
 
+
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        boolean isSelect = false;
+        for (int i = 0; i < split.length; i++) {
+            try {
+                Integer integer = Integer.valueOf(split[i]);
+                if (position == integer) {
+                    isSelect = true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (!isSelect) {
+            showMsgDialog("未绑定该小车，是否充值？", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    float mAddTempMoney = (float) (mOriginal[position]);
+
+                    if (position == mOriginal.length - 1) {
+                        findView(R.id.number).setVisibility(View.VISIBLE);
+                        return;
+                    }
+                    addMoney(mAddTempMoney);
+                }
+            });
+            return;
+        }
+
+
         if (num < 0) {
             Utils.showToast("未绑定小车，无法充值！");
             return;
@@ -127,6 +162,7 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
      *
      * @param mAddTempMoney the m add temp money
      */
+
     public void addMoney(float mAddTempMoney) {
         int selectedItemPosition = mItemSpinner1.getSelectedItemPosition();
         try {
@@ -150,7 +186,7 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
                     .append(mAddTempMoney);
 
             CarRecordTableTableDBopenhelerService.getInstance(getActivity())
-                    .insert(new CarRecord(car.getId(), mAddTempMoney, "充值", BaseData.mUserInfoBean.getId(),
+                    .insert(new CarRecord(car.getId(), mAddTempMoney, "充值", mUserInfoBean.getId(),
                             new SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())));
 
 
