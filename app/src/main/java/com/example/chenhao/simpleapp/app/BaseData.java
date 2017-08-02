@@ -2,6 +2,7 @@ package com.example.chenhao.simpleapp.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -42,7 +43,8 @@ public class BaseData {
     /**
      * The M sense data.
      */
-    public static int[] mSenseData = {0, 0, 0, 0, 0, 0, 0};
+    public static float[] mSenseData = {0, 0, 0, 0, 0, 0, 0};
+
     /**
      * The M sense min data.
      */
@@ -91,7 +93,7 @@ public class BaseData {
     /**
      * The constant mCarMaxMoney.
      */
-    public static int mCarMaxMoney = 5*1000;
+    public static int mCarMaxMoney = 5 * 1000;
 
 
     /**
@@ -101,7 +103,18 @@ public class BaseData {
      */
     public static void startData(final Activity context) {
         getWthrcdnData(context);
-        mSenseData[6] = new Random().nextInt(1000);
+//        mSenseData[6] = new Random().nextInt(1000);
+
+        SharedPreferences data = context.getSharedPreferences("data", Context.MODE_PRIVATE);
+
+        mSenseData[6] = data.getFloat("etc_Balance", 0);
+
+        for (int i = 0; i < mSenseMinData.length; i++) {
+            mSenseMinData[i] = data.getInt("etc_Balance_min_" + i, 10);
+            mSenseMaxData[i] = data.getInt("etc_Balance_max_" + i, 5000);
+        }
+
+
         new Thread() {
             @Override
             public void run() {

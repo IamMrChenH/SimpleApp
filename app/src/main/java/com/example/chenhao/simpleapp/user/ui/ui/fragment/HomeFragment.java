@@ -23,6 +23,7 @@ import com.example.chenhao.simpleapp.db.CarTableTableDBopenhelerService;
 import com.example.chenhao.simpleapp.db.UserTableDBopenhelerService;
 import com.example.chenhao.simpleapp.user.bean.HomeMenuItem;
 import com.example.chenhao.simpleapp.user.ui.adapter.HomeListAdapter;
+import com.example.chenhao.simpleapp.user.ui.ui.activity.CarActivity;
 import com.example.chenhao.simpleapp.user.ui.ui.activity.UserHomeActivity;
 
 import java.util.ArrayList;
@@ -103,6 +104,7 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
         if (!TextUtils.isEmpty(mUserInfoBean.getCarId())) {
             split = mUserInfoBean.getCarId().split(",");
             split = deleteNull(split);
+
             if (!TextUtils.isEmpty(mPreferences.getString("data", ""))) {
                 int num = mPreferences.getInt("num", 0);
                 car = instance.findCar(num);
@@ -157,10 +159,18 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
             mBalanceText.setText(car.getBalance() + "");
             mSpeedText.setText("" + mTrafficData[1]);
             mCarStatus.setText("正常");
+            mCarStatus.setOnClickListener(this);
         } else {
             mBalanceText.setText("无");
             mSpeedText.setText("无");
-            mCarStatus.setText("无");
+            mCarStatus.setText("未绑定");
+            mCarStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), CarActivity.class));
+                    getActivity().finish();
+                }
+            });
         }
         mListView.setAdapter(mHomeListAdapter);
 //
@@ -215,8 +225,15 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
             mCarStatus.setText("正常");
             mSpeedText.setText("" + mTrafficData[1]);
         } else {
-            mCarStatus.setText("无");
             mSpeedText.setText("无");
+            mCarStatus.setText("未绑定");
+            mCarStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), CarActivity.class));
+                    getActivity().finish();
+                }
+            });
         }
     }
 

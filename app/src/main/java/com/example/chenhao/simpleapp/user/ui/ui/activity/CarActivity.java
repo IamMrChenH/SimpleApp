@@ -51,7 +51,9 @@ public class CarActivity extends SuperBaseActivity {
         setContentView(R.layout.activity_car);
         initDatas();
         initViews();
-
+        if (mAdapter.getCount() <= 0) {
+            showMsgDialog("用户暂无小车，请添加小车！");
+        }
     }
 
     private void initViews() {
@@ -70,6 +72,7 @@ public class CarActivity extends SuperBaseActivity {
                         .putExtra("key", mCars.get(i).getId()));
             }
         });
+
     }
 
     private void initDatas() {

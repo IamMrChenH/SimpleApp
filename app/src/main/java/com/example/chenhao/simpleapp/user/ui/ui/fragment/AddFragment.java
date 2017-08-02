@@ -196,12 +196,13 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
 
             TextView t1 = (TextView) convertView.findViewById(R.id.item_t1);
             TextView t2 = (TextView) convertView.findViewById(R.id.item_t2);
-            t1.setText("优惠价:" + (mOriginal[position] * 0.9 * 100 / 100) + "元");
-            t2.setText("原价:" + mOriginal[position] + "元");
+            t1.setText("原价:" + mOriginal[position] + "元");
 
+            t2.setText("优惠价:" + (mOriginal[position] * 0.9 * 100 / 100) + "元");
+            t2.setVisibility(View.GONE);
             if (position == mOriginal.length - 1) {
                 t1.setText("其他");
-                t2.setVisibility(View.INVISIBLE);
+                t2.setVisibility(View.GONE);
             }
 
             return convertView;

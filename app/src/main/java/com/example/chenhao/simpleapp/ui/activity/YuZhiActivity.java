@@ -1,5 +1,7 @@
 package com.example.chenhao.simpleapp.ui.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +24,14 @@ public class YuZhiActivity extends SuperBaseActivity {
      * The M adapter.
      */
     YuZhiListViewAdapter mAdapter;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yu_zhi);
+        mSharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+
         initViews();
 
     }
@@ -74,7 +79,7 @@ public class YuZhiActivity extends SuperBaseActivity {
 
             t1.setText(BaseData.mSenseName[i]);
             t2.setText(BaseData.mSenseData[i] + "");
-            if (i == BaseData.mSenseName.length-1) {
+            if (i == BaseData.mSenseName.length - 1) {
                 t2.setText(" ");
             }
 
@@ -120,7 +125,9 @@ public class YuZhiActivity extends SuperBaseActivity {
         public void yuZhiSettings(int position, int min, int max) {
             BaseData.mSenseMinData[position] = min;
             BaseData.mSenseMaxData[position] = max;
-
+            mSharedPreferences.edit().putInt("etc_Balance_min_" + position, min)
+                    .putInt("etc_Balance_max_" + position, max)
+                    .commit();
         }
 
     }

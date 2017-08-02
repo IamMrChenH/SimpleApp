@@ -24,7 +24,7 @@ public class Car {
     /**
      * The Balance.
      */
-    public double balance ;
+    public double balance;
 
     /**
      * Instantiates a new Car.
