@@ -127,7 +127,7 @@ public class AchartLineView {
         renderer.setXAxisMax(6.3);
         renderer.setXLabels(mIntegers.size());
         renderer.setYAxisMin(0);
-        renderer.setYAxisMax(max + max / 5);
+        renderer.setYAxisMax(max + max / 5 + 1);
 
         View.repaint();
         return this;

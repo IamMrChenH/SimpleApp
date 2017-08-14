@@ -61,17 +61,19 @@ public class PermissionActivity extends SuperBaseActivity {
     }
 
 
-    public void updateRole(final UserInfoBean item, View view, final RadioButton radio3) {
+    public void updateRole(final UserInfoBean item, View view, final RadioButton[] radio) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 int tag = (int) view.getTag();
-
                 if (item.getRole() == 2) {
                     showMsgDialog("超级管理员无法修改权限！");
-                    radio3.setChecked(true);
+                    radio[2].setChecked(true);
                     return;
                 }
+
+                if (tag == item.getRole()) return;
+
 
                 switch (tag) {
                     case 0:
@@ -87,6 +89,7 @@ public class PermissionActivity extends SuperBaseActivity {
                         break;
                     case 2:
                         showMsgDialog("无法升级成超级管理员！");
+                        radio[item.isRole].setChecked(true);
                         return;
                 }
 
@@ -145,24 +148,32 @@ public class PermissionActivity extends SuperBaseActivity {
             RadioButton radio1 = (RadioButton) convertView.findViewById(R.id.radio1);
             RadioButton radio2 = (RadioButton) convertView.findViewById(R.id.radio2);
             RadioButton radio3 = (RadioButton) convertView.findViewById(R.id.radio3);
+            RadioButton[] buttons = new RadioButton[3];
+            buttons[0] = radio1;
+            buttons[1] = radio2;
+            buttons[2] = radio3;
+
             radio1.setTag(0);
             radio2.setTag(1);
             radio3.setTag(2);
             switch (item.getRole()) {
                 case 0:
                     radio1.setChecked(true);
+                    item.isRole = 0;
                     break;
                 case 1:
                     radio2.setChecked(true);
+                    item.isRole = 1;
                     break;
                 default:
                     radio3.setChecked(true);
+                    item.isRole = 2;
                     break;
             }
 
-            updateRole(item, radio1, radio3);
-            updateRole(item, radio2, radio3);
-            updateRole(item, radio3, radio3);
+            updateRole(item, radio1, buttons);
+            updateRole(item, radio2, buttons);
+            updateRole(item, radio3, buttons);
 
             return convertView;
         }

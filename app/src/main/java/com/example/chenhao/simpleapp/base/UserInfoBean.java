@@ -14,6 +14,8 @@ public class UserInfoBean {
     private int mRole;
     private String mCarId = null;
 
+    public int isRole = -1;
+
     /**
      * Instantiates a new User info bean.
      */

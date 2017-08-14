@@ -142,7 +142,12 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
                     float mAddTempMoney = (float) (mOriginal[position]);
 
                     if (position == mOriginal.length - 1) {
-                        findView(R.id.number).setVisibility(View.VISIBLE);
+                        View view1 = findView(R.id.number);
+                        if (view1.getVisibility() == View.VISIBLE) {
+                            view1.setVisibility(View.GONE);
+                        } else {
+                            view1.setVisibility(View.VISIBLE);
+                        }
                         return;
                     }
                     addMoney(mAddTempMoney);
@@ -151,13 +156,18 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
             return;
         }
 
-
-        float mAddTempMoney = (float) (mOriginal[position]);
-
         if (position == mOriginal.length - 1) {
-            findView(R.id.number).setVisibility(View.VISIBLE);
+            View view1 = findView(R.id.number);
+            if (view1.getVisibility() == View.VISIBLE) {
+                view1.setVisibility(View.GONE);
+            } else {
+                view1.setVisibility(View.VISIBLE);
+            }
             return;
         }
+        float mAddTempMoney = (float) (mOriginal[position]);
+
+
         addMoney(mAddTempMoney);
 
     }
