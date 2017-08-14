@@ -1,5 +1,6 @@
 package com.example.chenhao.simpleapp.base;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -19,6 +20,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * Find view t.
      * 不用强转View 的获取方法
+     *
      * @param <T> the type parameter
      * @param id  the id
      * @return the t
@@ -43,8 +45,20 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void showMsgDialog(String msg, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(msg)
+                .setTitle("温馨提示")
+                .setCancelable(false)
+                .setPositiveButton("确定", listener)
+                .setNegativeButton("取消", null)
+                .show();
+
+    }
+
     /**
-     *  不保存状态
+     * 不保存状态
+     *
      * @param outState
      * @param outPersistentState
      */

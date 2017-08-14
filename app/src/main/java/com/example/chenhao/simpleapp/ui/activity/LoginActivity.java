@@ -32,8 +32,8 @@ import com.example.chenhao.simpleapp.utils.Utils;
 
 /**
  * A login screen that offers login via email/password.
- *
- *登录界面
+ * <p>
+ * 登录界面
  */
 public class LoginActivity extends SuperBaseActivity {
 
@@ -65,7 +65,13 @@ public class LoginActivity extends SuperBaseActivity {
         //      'admin','admin','管理员','admin@xx.com','1008611','2017-7-17-21:55',0)");
 
         instance.insert(new UserInfoBean("admin", "admin", "zzx", "admin@xx.com",
-                "17720798392", "2017-7-17-21:55", 0));
+                "17720798392", "2017-7-17-21:55", 2));
+        instance.insert(new UserInfoBean("user1", "123", "ch", "user1@xx.com",
+                "17720798392", "2017-6-05-21:50", 1));
+        instance.insert(new UserInfoBean("user2", "123", "zh", "user2@xx.com",
+                "17720798392", "2017-8-07-11:55", 0));
+
+
         mSharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
 //        CarTableTableDBopenhelerService.getInstance(this).insert(new Car(1, 1, "2号小车", 1000));
@@ -274,8 +280,10 @@ public class LoginActivity extends SuperBaseActivity {
                     finish();
                     break;
                 case 2:
-                    Utils.showToast("此用户暂时无权限登陆！");
-//                    showMsgDialog("此用户暂时无权限登陆！");
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    Utils.showToast("欢迎您登陆 超级管理员！");
+//                    showMsgDialog(mUserInfoBean.getName() + "欢迎您登陆！");
+                    finish();
                     break;
                 default:
                     break;

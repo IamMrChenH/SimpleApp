@@ -1,7 +1,7 @@
 package com.example.chenhao.simpleapp.ui.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -60,31 +60,54 @@ public class PermissionActivity extends SuperBaseActivity {
 //        mListView.addHeaderView(getLayoutInflater().inflate(R.layout.item_permisson_head, null));
     }
 
-    /**
-     * Update role.
-     *
-     * @param id   the id
-     * @param view the view
-     */
-    public void updateRole(final int id, View view) {
+
+    public void updateRole(final UserInfoBean item, View view, final RadioButton radio3) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                boolean b = instance.updateRole(id, (int) view.getTag());
+            public void onClick(final View view) {
                 int tag = (int) view.getTag();
-                Log.e("233", "onClick: " + tag);
-                if (!b) {
-//                    Utils.showToast("修改失败！");
-                    showMsgDialog("修改失败！");
-                } else {
-//                    Utils.showToast("修改成功！");
-                    showMsgDialog("修改成功！");
+
+                if (item.getRole() == 2) {
+                    showMsgDialog("超级管理员无法修改权限！");
+                    radio3.setChecked(true);
+                    return;
                 }
-                updateListView();
+
+                switch (tag) {
+                    case 0:
+                        settingsPermission(item.getId(), (Integer) view.getTag());
+                        break;
+                    case 1:
+                        showMsgDialog("确定降级权限到用户？", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                settingsPermission(item.getId(), (Integer) view.getTag());
+                            }
+                        });
+                        break;
+                    case 2:
+                        showMsgDialog("无法升级成超级管理员！");
+                        return;
+                }
+
+
             }
         });
 
     }
+
+    public void settingsPermission(int id, int tag) {
+        boolean b = instance.updateRole(id, tag);
+        if (!b) {
+//                    Utils.showToast("修改失败！");
+            showMsgDialog("修改失败！");
+        } else {
+//                    Utils.showToast("修改成功！");
+            showMsgDialog("修改成功！");
+            updateListView();
+        }
+    }
+
 
     @Override
     public String getToolbarTitle() {
@@ -137,9 +160,9 @@ public class PermissionActivity extends SuperBaseActivity {
                     break;
             }
 
-            updateRole(item.getId(), radio1);
-            updateRole(item.getId(), radio2);
-            updateRole(item.getId(), radio3);
+            updateRole(item, radio1, radio3);
+            updateRole(item, radio2, radio3);
+            updateRole(item, radio3, radio3);
 
             return convertView;
         }

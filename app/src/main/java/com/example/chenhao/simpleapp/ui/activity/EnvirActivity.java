@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -46,7 +47,7 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
     /**
      * The M radio btn id.
      */
-    public int[] mRadioBtnId = {R.id.radio1, R.id.radio2, R.id.radio3, R.id.radio4, R.id.radio5, R.id.radio6, R.id.radio7};
+    public int[] mRadioBtnId = {R.id.radio1, R.id.radio2, R.id.radio3, R.id.radio4, R.id.radio5, R.id.radio6};
     /**
      * The M radio btns.
      */
@@ -65,7 +66,7 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
 
     private void initDatas() {
         mAchartLineViews = new ArrayList<>();
-        for (int i = 0; i < BaseData.mSenseName.length - 1; i++) {
+        for (int i = 0; i < BaseData.mSenseName.length; i++) {
             mAchartLineViews.add(new AchartLineView(this, BaseData.mSenseName[i]));
         }
 
@@ -88,8 +89,10 @@ public class EnvirActivity extends SuperBaseActivity implements Runnable {
 
         mViewPager = findView(R.id.mViewPager);
         mViewPager.setAdapter(mAdapter = new EnvirActivityViewPagerAdapter());
-        mViewPager.setCurrentItem(getIntent().getIntExtra("key", 0));
 
+        Log.e("789", "initViews: " + getIntent().getIntExtra("key", 0));
+
+        mViewPager.setCurrentItem(getIntent().getIntExtra("key", 0));
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

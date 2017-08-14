@@ -21,7 +21,7 @@ import static com.example.chenhao.simpleapp.app.MyApp.UpdateTime;
 
 /**
  * The type Envir fragment.
- *
+ * <p>
  * 原来是一个Fragment 现在改成了Activity
  * 用以GridView的方式显示环境等状态 点击进入折线图等功能
  */
@@ -93,6 +93,7 @@ public class EnvirFragment extends SuperBaseActivity implements Runnable, Adapte
         Intent intent = new Intent(this, EnvirActivity.class);
         intent.putExtra("key", position);
         startActivity(intent);
+
 //        showLoderDialog("切换完成");
 //        dismissLoderDialog();
 

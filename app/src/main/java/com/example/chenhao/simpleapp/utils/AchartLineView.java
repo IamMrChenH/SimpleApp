@@ -68,7 +68,7 @@ public class AchartLineView {
 
 
         renderer.setDisplayValues(true);
-        renderer.setYLabelsVerticalPadding(5);
+//        renderer.setYLabelsVerticalPadding(5);
         renderer.setPointSize(10);
         renderer.setLabelsTextSize(18);
 
@@ -96,7 +96,7 @@ public class AchartLineView {
         xySeries1 = new XYSeries("");
         dataset.addSeries(xySeries1);
 
-        View = ChartFactory.getCubeLineChartView(context, dataset, renderer, 0.15f);
+        View = ChartFactory.getCubeLineChartView(context, dataset, renderer, 0.00f);
 
     }
 

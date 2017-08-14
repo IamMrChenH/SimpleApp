@@ -19,7 +19,6 @@ import java.util.Date;
 /**
  * The type Street led activity.
  * 路灯管理界面
- *
  */
 public class StreetLedActivity extends SuperBaseActivity implements Runnable {
     private TextView mTitleText;
@@ -65,14 +64,10 @@ public class StreetLedActivity extends SuperBaseActivity implements Runnable {
                     mOpenwitch2.setChecked(!isChecked);
                     return;
                 }
-
                 if (isChecked) {
-                    mLed.setImageResource(R.mipmap.roadlamp_on);
-                    Animation animation = AnimationUtils.loadAnimation(StreetLedActivity.this, R.anim.street_led_anim);
-                    mLed.startAnimation(animation);
+                    openLed();
                 } else {
-                    mLed.setImageResource(R.mipmap.roadlamp_off);
-                    mLed.clearAnimation();
+                    closeLed();
 
                 }
 
@@ -81,27 +76,37 @@ public class StreetLedActivity extends SuperBaseActivity implements Runnable {
         });
     }
 
+    public void openLed() {
+        mOpenwitch2.setChecked(true);
+        mLed.setImageResource(R.mipmap.roadlamp_on);
+        Animation animation = AnimationUtils.loadAnimation(StreetLedActivity.this, R.anim.street_led_anim);
+        mLed.startAnimation(animation);
+    }
+
+    public void closeLed() {
+        mOpenwitch2.setChecked(false);
+        mLed.setImageResource(R.mipmap.roadlamp_off);
+        mLed.clearAnimation();
+    }
 
     /**
      * Auto led.
      */
     public void autoLed() {
-        if (!mAutoMode) return;
+        if (!mAutoMode) {
+            closeLed();
+            return;
+        }
 
         Date date = new Date(System.currentTimeMillis());
         int hours = date.getHours();
         Log.e("233", "autoLed: " + hours);
         try {
+            Log.e("789", "autoLed: " + hours);
             if (hours > 19 || hours < 7) {
-                mLed.setImageResource(R.mipmap.roadlamp_on);
-                Animation animation = AnimationUtils.loadAnimation(StreetLedActivity.this, R.anim.street_led_anim);
-                mLed.startAnimation(animation);
-                mOpenwitch2.setChecked(true);
-
+                openLed();
             } else {
-                mLed.setImageResource(R.mipmap.roadlamp_off);
-                mLed.clearAnimation();
-                mOpenwitch2.setChecked(false);
+                closeLed();
             }
 
 

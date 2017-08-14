@@ -28,6 +28,14 @@
             android:background="#000" />
 
         <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="超级管理员" />
+
+        <RadioButton
             android:id="@+id/radio1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -45,13 +53,5 @@
             android:text="一般用戶" />
 
 
-        <RadioButton
-            android:id="@+id/radio3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:text="其他"
-            android:visibility="gone" />
     </RadioGroup>
 </LinearLayout>
