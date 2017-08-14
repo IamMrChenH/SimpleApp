@@ -47,7 +47,7 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     private DBopenhelerService instance;
     private CarTableTableDBopenhelerService instanceCar;
     private SharedPreferences mPreferences;
-    private int num;
+    private int num = -1;
     private String[] split;
 
     @Override
@@ -60,12 +60,15 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
         instance = DBopenhelerService.getInstance(getActivity());
         instanceCar = CarTableTableDBopenhelerService.getInstance(getActivity());
         mPreferences = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+
         num = mPreferences.getInt("num", -1);
         split = mUserInfoBean.getCarId().split(",");
         Car car = instanceCar.findCar(num);
+
         initViews();
-        if (num > 0) num = num - 1;
-        mItemSpinner1.setSelection(num);
+
+        if (num > 0)
+            mItemSpinner1.setSelection(num - 1);
     }
 
     private void initViews() {
@@ -113,17 +116,24 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         boolean isSelect = false;
-        for (int i = 0; i < split.length; i++) {
-            try {
-                Integer integer = Integer.valueOf(split[i]);
-                if (position == integer) {
-                    isSelect = true;
+        if (num > 0) {
+            for (int i = 0; i < split.length; i++) {
+                try {
+                    int selectedItemPosition = mItemSpinner1.getSelectedItemPosition();
+                    Integer integer = Integer.valueOf(split[i]);
+                    Log.e("select", "onItemClick: " + integer);
+                    if (selectedItemPosition + 1 == integer) {
+                        isSelect = true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
+            }
+        } else {
+            Utils.showToast("未绑定小车！");
         }
+
 
         if (!isSelect) {
             showMsgDialog("未绑定该小车，是否充值？", new DialogInterface.OnClickListener() {
@@ -142,10 +152,6 @@ public class AddFragment extends BaseFragment implements AdapterView.OnItemClick
         }
 
 
-        if (num < 0) {
-            Utils.showToast("未绑定小车，无法充值！");
-            return;
-        }
         float mAddTempMoney = (float) (mOriginal[position]);
 
         if (position == mOriginal.length - 1) {

@@ -48,6 +48,8 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
      */
     SharedPreferences mPreferences;
 
+    boolean isWhatCar = false;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
@@ -190,6 +192,24 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
         super.onStart();
         try {
             mBaseHandler.postDelayed(this, UpdateTime);
+
+
+            if (car != null) {
+                isWhatCar = true;
+                mCarStatus.setText("正常");
+                mSpeedText.setText("" + mTrafficData[1]);
+            } else {
+                isWhatCar = false;
+                mSpeedText.setText("无");
+                mCarStatus.setText("未绑定");
+                mCarStatus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), CarActivity.class));
+                        getActivity().finish();
+                    }
+                });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,39 +222,32 @@ public class HomeFragment extends BaseFragment implements Runnable, View.OnClick
 
     @Override
     public void run() {
-        String t3Str = "正常";
-
-
+        String t3Str = "";
         pm2_5 = "PM2.5正常->小于400";
+        int color = Color.parseColor("#66ccff");
         if (BaseData.mUserBean.getStatus() == 1) {
             t3Str = "限行";
+            color = Color.parseColor("#f5d830");
             pm2_5 = "PM2.5过大->大于400,城市限行！";
         } else if (BaseData.mUserBean.getStatus() >= 2) {
             t3Str = "停止";
+            color = Color.RED;
             pm2_5 = "PM2.5过大->大于500,城市禁行！";
-        }
-
-
-        mHomeListAdapter.notifyDataSetChanged();
-        mHomeListAdapter.notifyDataSetInvalidated();
-        mCarStatus.setText(t3Str);
-        mSpeedText.setText("" + mTrafficData[1]);
-
-
-        if (car != null) {
-            mCarStatus.setText("正常");
-            mSpeedText.setText("" + mTrafficData[1]);
         } else {
-            mSpeedText.setText("无");
-            mCarStatus.setText("未绑定");
-            mCarStatus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(getActivity(), CarActivity.class));
-                    getActivity().finish();
-                }
-            });
+            t3Str = "正常";
         }
+
+        if (isWhatCar) {
+            mHomeListAdapter.notifyDataSetChanged();
+            mHomeListAdapter.notifyDataSetInvalidated();
+            mCarStatus.setText(t3Str);
+            mCarStatus.setTextColor(color);
+            mSpeedText.setText("" + mTrafficData[1]);
+        }
+
+
+        mBaseHandler.postDelayed(this, UpdateTime);
+
     }
 
 
